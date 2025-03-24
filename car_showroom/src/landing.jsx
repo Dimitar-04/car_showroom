@@ -21,11 +21,20 @@ function Landing() {
           <StyledHeader>
             <h1>THE M3</h1>
           </StyledHeader>
-          <Canvas style={{ marginTop: '300px', height: '100vh', width: '60%' }}>
-            <Environment preset="studio" />
-            <OrbitControls />
-            <Chest></Chest>
-          </Canvas>
+          <CanvasWrapper>
+            <Canvas style={{ width: '50%', height: '100%' }}>
+              <Environment preset="studio" />
+              <OrbitControls
+                minDistance={5} // Minimum zoom distance (can't get closer than this)
+                maxDistance={6} // Maximum zoom distance (can't get further than this)
+                zoomSpeed={0.5}
+                enablePan={false}
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI / 2}
+              />
+              <Chest scale={1.1}></Chest>
+            </Canvas>
+          </CanvasWrapper>
         </MainWrapper>
         <Engine />
         <Interior />
@@ -48,6 +57,7 @@ const gradientAnimation = keyframes`
     background-position: 100% 100%;
   }
 `;
+
 const slideIn = keyframes`
     from {
         transform: translateY(20px);
@@ -84,9 +94,31 @@ const Navbar = styled.div`
     cursor: pointer;
   }
 `;
+const canvasSlideUp = keyframes`
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+const CanvasWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  margin-top: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  transform: translateY(100%);
+  opacity: 0;
+  animation: ${canvasSlideUp} 1.5s ease-out forwards;
+  animation-delay: 0.2s; /* Start after the header animation begins */
+`;
 const StyledHeader = styled.div`
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, 100%);
   width: 100vw;
