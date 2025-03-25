@@ -4,6 +4,7 @@ import styled from 'styled-components';
 function History() {
   const [textContents, setTextContents] = useState({});
   const [openDialog, setOpenDialog] = useState(null);
+  const [dialogImage, setDialogImage] = useState(null);
   const dialogRef = useRef(null);
 
   const gridItems = [
@@ -57,6 +58,15 @@ function History() {
 
   const openDialogText = (title) => {
     setOpenDialog(title);
+    setDialogImage(null);
+    if (dialogRef.current) {
+      dialogRef.current.showModal();
+      document.body.style.overflow = 'hidden';
+    }
+  };
+  const openDialogImage = (imageUrl, caption, title) => {
+    setDialogImage({ url: imageUrl, caption: caption, title: title });
+    setOpenDialog(null);
     if (dialogRef.current) {
       dialogRef.current.showModal();
       document.body.style.overflow = 'hidden';
@@ -89,7 +99,56 @@ function History() {
             </GridItem>
           ))}
         </TextsContainer>
-        <ImagesContainer></ImagesContainer>
+        <ImagesContainer>
+          <Card>
+            <h2 style={{ textAlign: 'center', color: 'var(--textColor)' }}>
+              Racing
+            </h2>
+            <img
+              src="../src/assets/sliki/racing.jpg"
+              onClick={() =>
+                openDialogImage(
+                  '../src/assets/sliki/racing.jpg',
+                  'The BMW M3 GTR E46 GTR Race Version',
+                  'Racing'
+                )
+              }
+            />
+            <p>The BMW M3 GTR E46 GTR Race Version</p>
+          </Card>
+          <Card2>
+            <h2 style={{ textAlign: 'center', color: 'var(--textColor)' }}>
+              Road Legal
+            </h2>
+            <img
+              src="../src/assets/sliki/road-legal.jpg"
+              onClick={() =>
+                openDialogImage(
+                  '../src/assets/sliki/road-legal.jpg',
+                  'The road legal version of the BMW M3 GTR (Left)',
+                  'Road Legal'
+                )
+              }
+            />
+            <p>The road legal version of the BMW M3 GTR</p>
+          </Card2>
+          <Card3>
+            <h2 style={{ textAlign: 'center', color: 'var(--textColor)' }}>
+              24 Hours of Le Mans
+            </h2>
+            <img
+              src="../src/assets/sliki/europe-lemans.jpg"
+              onClick={() =>
+                openDialogImage(
+                  '../src/assets/sliki/europe-lemans.jpg',
+                  'The M3 GTR that raced at Le Mans',
+                  '24 Hours of Le Mans'
+                )
+              }
+            />
+            <p>The M3 GTR that raced at Le Mans</p>
+          </Card3>
+        </ImagesContainer>
       </MainContainer>
       <StyledDialog ref={dialogRef}>
         <DialogContainer>
@@ -100,11 +159,167 @@ function History() {
               <CloseButton onClick={closeDialogText}>Close</CloseButton>
             </>
           )}
+          {dialogImage && (
+            <>
+              <DialogImageContainer>
+                <h1>{dialogImage.title}</h1>
+                <DialogImage src={dialogImage.url} alt={dialogImage.caption} />
+                <p>{dialogImage.caption}</p>
+              </DialogImageContainer>
+              <CloseButton onClick={closeDialogText}>Close</CloseButton>
+            </>
+          )}
         </DialogContainer>
       </StyledDialog>
     </MainWrapper>
   );
 }
+const DialogImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: none;
+  width: 100%;
+  p {
+    text-align: left;
+    font-family: 'Caveat', cursive;
+    color: var(--textColor);
+    font-size: 20px !important;
+    text-align: center;
+  }
+`;
+
+const DialogImage = styled.img`
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+
+  border-radius: 8px;
+`;
+const Card3 = styled.div`
+  width: 50%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  z-index: 11;
+  top: 60%;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transform: rotate(-5deg); /* Add rotation */
+  /* Rotate from the center */
+  margin-left: 2%;
+
+  & > * {
+    transform: rotate(0deg);
+  }
+  p {
+    text-align: left;
+    font-family: 'Caveat', cursive;
+    color: grey;
+
+    text-align: center;
+  }
+  img {
+    transition: all 0.6s ease; /* Make it slower */
+    opacity: 0.8; /* Add opacity here instead */
+    width: 90%;
+    height: 60%;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img:hover {
+    cursor: pointer;
+    transform: scale(1.05) rotate(-1deg); /* Keep the counter-rotation when scaling */
+    opacity: 1;
+  }
+`;
+const Card2 = styled.div`
+  width: 50%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  z-index: 1;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transform: rotate(5deg); /* Add rotation */
+  top: 35%;
+  margin-left: 45%;
+  & > * {
+    transform: rotate(0.5deg);
+  }
+  p {
+    text-align: left;
+    font-family: 'Caveat', cursive;
+    color: grey;
+
+    text-align: center;
+  }
+  img {
+    transition: all 0.6s ease; /* Make it slower */
+    opacity: 0.8; /* Add opacity here instead */
+    width: 90%;
+    height: 60%;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img:hover {
+    cursor: pointer;
+    transform: scale(1.05) rotate(2deg); /* Keep the counter-rotation when scaling */
+    opacity: 1;
+  }
+`;
+const Card = styled.div`
+  width: 50%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transform: rotate(-5deg); /* Add rotation */
+  /* Rotate from the center */
+  margin-left: 2%;
+
+  & > * {
+    transform: rotate(0deg);
+  }
+  p {
+    text-align: left;
+    font-family: 'Caveat', cursive;
+    color: grey;
+
+    text-align: center;
+  }
+  img {
+    transition: all 0.6s ease; /* Make it slower */
+    opacity: 0.8; /* Add opacity here instead */
+    width: 90%;
+    height: 60%;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img:hover {
+    cursor: pointer;
+    transform: scale(1.05) rotate(-1deg); /* Keep the counter-rotation when scaling */
+    opacity: 1;
+  }
+`;
 const DialogContainer = styled.div`
   background-color: white;
   padding: 30px;
@@ -112,7 +327,7 @@ const DialogContainer = styled.div`
   width: 100%;
   max-width: 800px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+  overflow-y: hidden;
   h1 {
     margin-top: 0;
     font-style: italic;
@@ -131,10 +346,16 @@ const StyledDialog = styled.dialog`
   max-width: 80%;
   max-height: 80vh;
   border-radius: 8px;
-
+  overflow: auto;
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
   }
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
+  -ms-overflow-style: none; /* Correct property with hyphen */
+  scrollbar-width: none;
 `;
 const CloseButton = styled.button`
   padding: 8px 16px;
@@ -206,8 +427,14 @@ const TextsContainer = styled.div`
 `;
 const ImagesContainer = styled.div`
   width: 42%;
-  height: 100%;
-  border: 1px solid black;
+  height: 130vh;
+  margin-left: 2%;
+  position: relative;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* Correct property with hyphen */
+  scrollbar-width: none;
 `;
 const MainWrapper = styled.div`
   position: relative;
@@ -218,6 +445,11 @@ const MainWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
 `;
 const StyledHeader = styled.div`
   position: absolute;
