@@ -37,7 +37,7 @@ function Landing() {
           </CanvasWrapper>
         </MainWrapper>
         <Engine />
-        <Interior />
+
         <History />
       </PageContainer>
     </>
@@ -152,5 +152,10 @@ const MainWrapper = styled.div`
   z-index: 1;
   background: url('/src/assets/sliki/background.png') no-repeat center center;
   background-size: cover;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* Correct property with hyphen */
+  scrollbar-width: none;
 `;
 export default Landing;
