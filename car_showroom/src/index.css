@@ -7,7 +7,18 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'CustomFont', Arial, sans-serif;
+}
+p {
+  font-family: 'Arvo', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+h1,
+h2,
+h3 {
+  font-family: 'Arvo', serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 * {
@@ -19,3 +30,5 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');

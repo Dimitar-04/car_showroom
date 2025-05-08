@@ -1,12 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import styled, { css } from 'styled-components'; // Import css
 
+// Define the height for each card. Adjust as needed.
+const ITEM_CARD_HEIGHT_NUMERIC = 700; // Numeric value for calculations
+const ITEM_CARD_HEIGHT_CSS = `${ITEM_CARD_HEIGHT_NUMERIC}px`;
 function History() {
   const [textContents, setTextContents] = useState({});
   const [openDialog, setOpenDialog] = useState(null);
   const [dialogImage, setDialogImage] = useState(null);
   const dialogRef = useRef(null);
-
+  const [currentIndex, setCurrentIndex] = useState(0); // State for current item index
+  const scrollableContainerRef = useRef(null); // Ref for the scrollable div
+  const scrollTimeoutRef = useRef(null);
   const gridItems = [
     {
       title: 'The Legend of the E46 M3 GTR',
@@ -69,16 +74,72 @@ function History() {
     setOpenDialog(null);
     if (dialogRef.current) {
       dialogRef.current.showModal();
-      document.body.style.overflow = 'hidden';
     }
   };
-  const closeDialogText = () => {
+  const closeDialogByButton = () => {
     setOpenDialog(null);
     if (dialogRef.current) {
       dialogRef.current.close();
-      document.body.style.overflow = 'auto';
     }
   };
+  const handleWheelScroll = useCallback(
+    (event) => {
+      event.preventDefault(); // Prevent page scrolling
+
+      if (scrollTimeoutRef.current || gridItems.length === 0) {
+        return; // Already processing a scroll or no items
+      }
+
+      const timeoutDuration = 700; // Milliseconds to wait before allowing next scroll
+
+      if (event.deltaY < 0) {
+        // Scroll up
+        setCurrentIndex((prevIndex) => {
+          const newIndex = Math.max(0, prevIndex - 1);
+          if (newIndex !== prevIndex) {
+            scrollTimeoutRef.current = setTimeout(() => {
+              scrollTimeoutRef.current = null;
+            }, timeoutDuration);
+          }
+          return newIndex;
+        });
+      } else if (event.deltaY > 0) {
+        // Scroll down
+        setCurrentIndex((prevIndex) => {
+          const newIndex = Math.min(gridItems.length - 1, prevIndex + 1);
+          if (newIndex !== prevIndex) {
+            scrollTimeoutRef.current = setTimeout(() => {
+              scrollTimeoutRef.current = null;
+            }, timeoutDuration);
+          }
+          return newIndex;
+        });
+      }
+    },
+    [gridItems.length]
+  );
+
+  useEffect(() => {
+    const container = scrollableContainerRef.current;
+    // Use a stable reference for the event listener function
+    const wheelListener = (e) => handleWheelScroll(e);
+
+    if (container) {
+      container.addEventListener('wheel', wheelListener, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', wheelListener);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = null;
+      }
+    };
+  }, [handleWheelScroll]); // Re-attach if handleWheelScroll changes
+
+  const currentItem = gridItems.length > 0 ? gridItems[currentIndex] : null;
 
   return (
     <MainWrapper>
@@ -86,29 +147,34 @@ function History() {
         <h1>HISTORY</h1>
       </StyledHeader>
       <MainContainer>
-        <div security="none" style={{ width: '50%' }}>
-          {gridItems.map((item, index) => (
-            <div style={{ marginBottom: '70px' }} key={index}>
-              <h2
-                style={{ color: 'white' }}
-                onClick={() => openDialogText(item.title)}
-              >
-                {item.title}
-              </h2>
-              <Paragraph>
-                {truncateText(textContents[item.title])}
-                <span onClick={() => openDialogText(item.title)}>
-                  ...Read More
-                </span>
-              </Paragraph>
-            </div>
-          ))}
-        </div>
+        <ScrollableTextItemContainer ref={scrollableContainerRef}>
+          <RollerWrapper
+            style={{
+              transform: `translateY(-${
+                currentIndex * ITEM_CARD_HEIGHT_NUMERIC
+              }px)`,
+            }}
+          >
+            {gridItems.map((item) => (
+              <TextItemCard key={item.file}>
+                {' '}
+                {/* Use a unique key, e.g., item.file or item.title */}
+                <h2 onClick={() => openDialogText(item.title)}>{item.title}</h2>
+                <Paragraph>
+                  {textContents[item.title] || 'Loading...'}
+                </Paragraph>
+              </TextItemCard>
+            ))}
+          </RollerWrapper>
+          {gridItems.length === 0 && (
+            <p style={{ color: 'white', textAlign: 'center' }}>
+              No history items to display.
+            </p>
+          )}
+        </ScrollableTextItemContainer>
         <ImagesContainer>
+          {/* Card components remain the same */}
           <Card>
-            <h2 style={{ textAlign: 'center', color: 'var(--textColor)' }}>
-              Racing
-            </h2>
             <img
               src="../src/assets/sliki/racing.jpg"
               onClick={() =>
@@ -118,13 +184,19 @@ function History() {
                   'Racing'
                 )
               }
+              style={{ marginTop: '20px' }}
             />
-            <p>The BMW M3 GTR E46 GTR Race Version</p>
+            <h2
+              style={{
+                textAlign: 'center',
+                color: 'var(--textColor)',
+                fontSize: '1.3em',
+              }}
+            >
+              Racing
+            </h2>
           </Card>
           <Card2>
-            <h2 style={{ textAlign: 'center', color: 'var(--textColor)' }}>
-              Road Legal
-            </h2>
             <img
               src="../src/assets/sliki/road-legal.jpg"
               onClick={() =>
@@ -134,13 +206,19 @@ function History() {
                   'Road Legal'
                 )
               }
+              style={{ marginTop: '20px' }}
             />
-            <p>The road legal version of the BMW M3 GTR</p>
+            <h2
+              style={{
+                textAlign: 'center',
+                color: 'var(--textColor)',
+                fontSize: '1.3em',
+              }}
+            >
+              Road Legal
+            </h2>
           </Card2>
           <Card3>
-            <h2 style={{ textAlign: 'center', color: 'var(--textColor)' }}>
-              24 Hours of Le Mans
-            </h2>
             <img
               src="../src/assets/sliki/europe-lemans.jpg"
               onClick={() =>
@@ -150,8 +228,17 @@ function History() {
                   '24 Hours of Le Mans'
                 )
               }
+              style={{ marginTop: '20px' }}
             />
-            <p>The M3 GTR that raced at Le Mans</p>
+            <h2
+              style={{
+                textAlign: 'center',
+                color: 'var(--textColor)',
+                fontSize: '1.3em',
+              }}
+            >
+              24 Hours of Le Mans
+            </h2>
           </Card3>
         </ImagesContainer>
       </MainContainer>
@@ -161,7 +248,7 @@ function History() {
             <>
               <h1>{openDialog}</h1>
               <p>{textContents[openDialog]}</p>
-              <CloseButton onClick={closeDialogText}>Close</CloseButton>
+              <CloseButton onClick={closeDialogByButton}>Close</CloseButton>
             </>
           )}
           {dialogImage && (
@@ -171,7 +258,7 @@ function History() {
                 <DialogImage src={dialogImage.url} alt={dialogImage.caption} />
                 <p>{dialogImage.caption}</p>
               </DialogImageContainer>
-              <CloseButton onClick={closeDialogText}>Close</CloseButton>
+              <CloseButton onClick={closeDialogByButton}>Close</CloseButton>
             </>
           )}
         </DialogContainer>
@@ -179,15 +266,51 @@ function History() {
     </MainWrapper>
   );
 }
+const TextItemCard = styled.div`
+  height: ${ITEM_CARD_HEIGHT_CSS};
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; // Or 'center' if you prefer
+  overflow: hidden;
+  h2 {
+    color: rgb(16, 61, 99);
+    cursor: pointer;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+    &:hover {
+      color: #16588e;
+    }
+  }
+`;
+
+// New styled component to wrap all items and apply the transform
+const RollerWrapper = styled.div`
+  width: 100%;
+  transition: transform 0.75s ease-in-out; // Adjust timing and easing as desired
+`;
+const ScrollableTextItemContainer = styled.div`
+  width: 50%;
+  height: ${ITEM_CARD_HEIGHT_CSS}; // Set to the height of one card
+  overflow: hidden; // This is key for the roller effect
+  position: relative; // Needed for absolute positioning of RollerWrapper if you choose that
+  margin-top: 120px; // Keep existing margin
+  // display: flex, justify-content: center are removed as this is now a viewport
+`;
 const DialogImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: none;
+  overflow-y: hidden;
+  height: 80vh;
   width: 100%;
   p {
     text-align: left;
-    font-family: 'Caveat', cursive;
+
     color: var(--textColor);
     font-size: 20px !important;
     text-align: center;
@@ -196,7 +319,7 @@ const DialogImageContainer = styled.div`
 
 const DialogImage = styled.img`
   max-width: 100%;
-  max-height: 400px;
+  max-height: 300px;
   object-fit: contain;
 
   border-radius: 8px;
@@ -211,7 +334,7 @@ const Card3 = styled.div`
   position: absolute;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+
   transform: rotate(-5deg); /* Add rotation */
   /* Rotate from the center */
   margin-left: 2%;
@@ -221,7 +344,7 @@ const Card3 = styled.div`
   }
   p {
     text-align: left;
-    font-family: 'Caveat', cursive;
+
     color: grey;
 
     text-align: center;
@@ -231,7 +354,7 @@ const Card3 = styled.div`
     opacity: 0.8; /* Add opacity here instead */
     width: 90%;
     height: 60%;
-    border-radius: 8px;
+
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
@@ -253,7 +376,7 @@ const Card2 = styled.div`
   position: absolute;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+
   transform: rotate(5deg); /* Add rotation */
   top: 35%;
   margin-left: 45%;
@@ -262,7 +385,7 @@ const Card2 = styled.div`
   }
   p {
     text-align: left;
-    font-family: 'Caveat', cursive;
+
     color: grey;
 
     text-align: center;
@@ -272,7 +395,7 @@ const Card2 = styled.div`
     opacity: 0.8; /* Add opacity here instead */
     width: 90%;
     height: 60%;
-    border-radius: 8px;
+
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
@@ -293,7 +416,7 @@ const Card = styled.div`
   position: absolute;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+
   transform: rotate(-5deg); /* Add rotation */
   /* Rotate from the center */
   margin-left: 2%;
@@ -303,7 +426,7 @@ const Card = styled.div`
   }
   p {
     text-align: left;
-    font-family: 'Caveat', cursive;
+
     color: grey;
 
     text-align: center;
@@ -313,7 +436,7 @@ const Card = styled.div`
     opacity: 0.8; /* Add opacity here instead */
     width: 90%;
     height: 60%;
-    border-radius: 8px;
+
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
@@ -331,6 +454,7 @@ const DialogContainer = styled.div`
   border-radius: 8px;
   width: 100%;
   max-width: 800px;
+  max-height: 100vh;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow-y: hidden;
   h1 {
@@ -341,7 +465,6 @@ const DialogContainer = styled.div`
   p {
     line-height: 1.6;
     font-size: 18px;
-    margin-bottom: 20px;
   }
 `;
 const StyledDialog = styled.dialog`
@@ -351,7 +474,7 @@ const StyledDialog = styled.dialog`
   max-width: 80%;
   max-height: 80vh;
   border-radius: 8px;
-  overflow: auto;
+  overflow: hidden;
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.8);
   }
@@ -370,33 +493,23 @@ const CloseButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-
+  position: absolute;
+  left: 6px;
+  bottom: 4px;
   &:hover {
     background-color: #0d3b5f;
   }
 `;
 
 const Paragraph = styled.p`
-    color: white
-    ;
-  }
-  
-    
-    overflow: hidden;
-
-    font-family:'helvetica';
-    font-size: 18px;
-    
-    transition: color 0.3s ease;
-
-    span {
-      color: var(--textColor);
-      width: 15%;
-    }
-    span:hover {
-      color: #16588E;
-      cursor: pointer;
-  
+  color: black;
+  font-size: 16px; /* Adjusted for space */
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.5; /* Adjusted for space */
+  overflow: hidden; /* Ensures paragraph itself clips if text is still too long */
+  /* The height will be determined by the truncated text content.
+     TextItemCard's overflow:hidden is the final gatekeeper. */
 `;
 
 const MainContainer = styled.div`
@@ -420,6 +533,7 @@ const ImagesContainer = styled.div`
   width: 42%;
   height: 130vh;
   margin-left: 2%;
+  margin-bottom: 13%;
   position: relative;
   &::-webkit-scrollbar {
     display: none;
