@@ -40,6 +40,7 @@ function Landing() {
           </MainWrapper>
           <History />
         </GradientWrapper>
+
         <Engine />
       </PageContainer>
     </>
@@ -51,7 +52,7 @@ const GradientWrapper = styled.div`
     to bottom,
 
     #f6f4f1 30%,
-    rgb(80, 79, 79) 100%
+    #81c4ff 100%
   );
   z-index: 1;
 `;
