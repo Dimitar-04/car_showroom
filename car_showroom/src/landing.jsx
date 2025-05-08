@@ -3,7 +3,7 @@ import ThreeDObject from './ThreeDObject';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei'; // optional but convenient
-import { Chest } from '../Components/chest';
+import { Car } from '../Components/car';
 import Engine from './engine';
 import Interior from './interior';
 import History from './history';
@@ -11,43 +11,64 @@ function Landing() {
   return (
     <>
       <PageContainer>
-        <MainWrapper>
-          <Navbar>
-            <p>OVERVIEW</p>
-            <p>ENGINE</p>
-            <p>INTERIOR</p>
-            <p>HISTORY</p>
-          </Navbar>
-          <StyledHeader>
-            <h1>THE M3</h1>
-          </StyledHeader>
-          <CanvasWrapper>
-            <Canvas style={{ width: '50%', height: '100%' }}>
-              <Environment preset="studio" />
-              <OrbitControls
-                minDistance={5} // Minimum zoom distance (can't get closer than this)
-                maxDistance={6} // Maximum zoom distance (can't get further than this)
-                zoomSpeed={0.5}
-                enablePan={false}
-                minPolarAngle={Math.PI / 4}
-                maxPolarAngle={Math.PI / 2}
-              />
-              <Chest scale={1.1}></Chest>
-            </Canvas>
-          </CanvasWrapper>
-        </MainWrapper>
-        <Engine />
+        <BackgroundHolder></BackgroundHolder>
+        <GradientWrapper>
+          <MainWrapper>
+            <Navbar>
+              <p>OVERVIEW</p>
+              <p>ENGINE</p>
 
-        <History />
+              <p>HISTORY</p>
+            </Navbar>
+            <StyledHeader>
+              <h1>THE M3</h1>
+            </StyledHeader>
+            <CanvasWrapper>
+              <Canvas style={{ width: '75%', height: '100%' }}>
+                <Environment preset="studio" />
+                <OrbitControls
+                  minDistance={5} // Minimum zoom distance (can't get closer than this)
+                  maxDistance={6} // Maximum zoom distance (can't get further than this)
+                  zoomSpeed={0.2}
+                  enablePan={false}
+                  minPolarAngle={Math.PI / 4}
+                  maxPolarAngle={Math.PI / 2}
+                />
+                <Car scale={1.8}></Car>
+              </Canvas>
+            </CanvasWrapper>
+          </MainWrapper>
+          <History />
+        </GradientWrapper>
+        <Engine />
       </PageContainer>
     </>
   );
 }
+
+const GradientWrapper = styled.div`
+  background-image: linear-gradient(
+    to bottom,
+
+    #f6f4f1 30%,
+    rgb(80, 79, 79) 100%
+  );
+  z-index: 1;
+`;
+const BackgroundHolder = styled.div`
+  background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
+  background-size: cover;
+  width: 100%;
+  height: 50vh;
+  position: absolute;
+  z-index: 0;
+`;
 const PageContainer = styled.div`
   width: 100%;
   height: auto;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 `;
 const gradientAnimation = keyframes`
   0% {
@@ -107,7 +128,7 @@ const canvasSlideUp = keyframes`
 const CanvasWrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-top: 250px;
+  margin-top: 90px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -133,8 +154,7 @@ const StyledHeader = styled.div`
   h1 {
     margin: 0;
     font-size: 260px;
-
-    background: linear-gradient(to bottom, rgb(26, 25, 25), rgb(236, 219, 219));
+    background: linear-gradient(to bottom, black, rgb(156, 155, 155));
     background-size: 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -150,7 +170,7 @@ const MainWrapper = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 1;
-  background: url('/src/assets/sliki/background.png') no-repeat center center;
+
   background-size: cover;
   &::-webkit-scrollbar {
     display: none;
