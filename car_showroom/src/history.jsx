@@ -49,7 +49,7 @@ function History() {
     };
     loadAllFiles();
   }, []);
-  const truncateText = (text, wordLimit = 20) => {
+  const truncateText = (text, wordLimit = 30) => {
     if (!text) return '';
     const words = text.split(' ');
     if (words.length <= wordLimit) return text;
@@ -83,22 +83,27 @@ function History() {
   return (
     <MainWrapper>
       <StyledHeader>
-        <h1>History</h1>
+        <h1>HISTORY</h1>
       </StyledHeader>
       <MainContainer>
-        <TextsContainer>
+        <div security="none" style={{ width: '50%' }}>
           {gridItems.map((item, index) => (
-            <GridItem key={index}>
-              <h2 onClick={() => openDialogText(item.title)}>{item.title}</h2>
-              <p>
+            <div style={{ marginBottom: '70px' }} key={index}>
+              <h2
+                style={{ color: 'white' }}
+                onClick={() => openDialogText(item.title)}
+              >
+                {item.title}
+              </h2>
+              <Paragraph>
                 {truncateText(textContents[item.title])}
                 <span onClick={() => openDialogText(item.title)}>
                   ...Read More
                 </span>
-              </p>
-            </GridItem>
+              </Paragraph>
+            </div>
           ))}
-        </TextsContainer>
+        </div>
         <ImagesContainer>
           <Card>
             <h2 style={{ textAlign: 'center', color: 'var(--textColor)' }}>
@@ -371,41 +376,27 @@ const CloseButton = styled.button`
   }
 `;
 
-const GridItem = styled.div`
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  margin-left: 10px;
-  padding: 10px;
-  border-radius: 8px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  transition: all 0.3s ease;
-  &:hover{
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+const Paragraph = styled.p`
+    color: white
+    ;
   }
-  h2{
-    font-style: italic;
-    text-decoration: underline;
-    cursor: pointer;
-    &:hover {
-      color: #16588E;
-    }
-  }
-  p {
+  
     
     overflow: hidden;
+
+    font-family:'helvetica';
+    font-size: 18px;
     
     transition: color 0.3s ease;
 
     span {
       color: var(--textColor);
+      width: 15%;
     }
     span:hover {
       color: #16588E;
       cursor: pointer;
-  }
+  
 `;
 
 const MainContainer = styled.div`
