@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import styled, { css } from 'styled-components'; // Import css
 
-// Define the height for each card. Adjust as needed.
-const ITEM_CARD_HEIGHT_NUMERIC = 700; // Numeric value for calculations
-const ITEM_CARD_HEIGHT_CSS = `${ITEM_CARD_HEIGHT_NUMERIC}px`;
+const ITEM_CARD_HEIGHT_NUMERIC = 700;
+const ITEM_CARD_HEIGHT_CSS = `700px`;
 function History() {
   const [textContents, setTextContents] = useState({});
   const [openDialog, setOpenDialog] = useState(null);
@@ -84,13 +83,13 @@ function History() {
   };
   const handleWheelScroll = useCallback(
     (event) => {
-      event.preventDefault(); // Prevent page scrolling
+      event.preventDefault();
 
       if (scrollTimeoutRef.current || gridItems.length === 0) {
-        return; // Already processing a scroll or no items
+        return;
       }
 
-      const timeoutDuration = 700; // Milliseconds to wait before allowing next scroll
+      const timeoutDuration = 700;
 
       if (event.deltaY < 0) {
         // Scroll up
@@ -121,7 +120,7 @@ function History() {
 
   useEffect(() => {
     const container = scrollableContainerRef.current;
-    // Use a stable reference for the event listener function
+
     const wheelListener = (e) => handleWheelScroll(e);
 
     if (container) {
@@ -137,9 +136,7 @@ function History() {
         scrollTimeoutRef.current = null;
       }
     };
-  }, [handleWheelScroll]); // Re-attach if handleWheelScroll changes
-
-  const currentItem = gridItems.length > 0 ? gridItems[currentIndex] : null;
+  }, [handleWheelScroll]);
 
   return (
     <MainWrapper>
@@ -158,7 +155,6 @@ function History() {
             {gridItems.map((item) => (
               <TextItemCard key={item.file}>
                 {' '}
-                {/* Use a unique key, e.g., item.file or item.title */}
                 <h2 onClick={() => openDialogText(item.title)}>{item.title}</h2>
                 <Paragraph>
                   {textContents[item.title] || 'Loading...'}
@@ -287,18 +283,16 @@ const TextItemCard = styled.div`
   }
 `;
 
-// New styled component to wrap all items and apply the transform
 const RollerWrapper = styled.div`
   width: 100%;
   transition: transform 0.75s ease-in-out; // Adjust timing and easing as desired
 `;
 const ScrollableTextItemContainer = styled.div`
   width: 50%;
-  height: ${ITEM_CARD_HEIGHT_CSS}; // Set to the height of one card
-  overflow: hidden; // This is key for the roller effect
-  position: relative; // Needed for absolute positioning of RollerWrapper if you choose that
-  margin-top: 120px; // Keep existing margin
-  // display: flex, justify-content: center are removed as this is now a viewport
+  height: 700px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 50px;
 `;
 const DialogImageContainer = styled.div`
   display: flex;

@@ -10,9 +10,17 @@ function Engine() {
       <StyledHeader>
         <h1>Engine</h1>
       </StyledHeader>
+      <DIV></DIV>
     </MainWrapper>
   );
 }
+const DIV = styled.div`
+  background-color: #81c4ff;
+  width: 100px;
+  height: 100px;
+  transform: translateY(50%);
+`;
+
 const StyledHeader = styled.div`
   position: absolute;
 
