@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import ThreeDObject from './ThreeDObject';
+
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei'; // optional but convenient
