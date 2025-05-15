@@ -10,7 +10,7 @@ function Engine() {
   useEffect(() => {
     const currentMount = mountRef.current;
     if (!currentMount) return;
-
+    let isDisassembled = false;
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
@@ -24,16 +24,18 @@ function Engine() {
     const camera = new THREE.PerspectiveCamera(
       45,
       currentMount.clientWidth / currentMount.clientHeight,
-      1,
-      1000
+      0.01,
+      5000
     );
     camera.position.set(4, 5, 11);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.enablePan = false;
+
     controls.minDistance = 15;
     controls.maxDistance = 18;
+    console.log(controls.minDistance);
     controls.minPolarAngle = 0.5;
     controls.maxPolarAngle = 1.5;
     controls.autoRotate = false;
@@ -60,7 +62,6 @@ function Engine() {
 
     let mixer;
     let actions = [];
-    let isDisassembled = false;
 
     const loader = new GLTFLoader();
     loader.load(
@@ -107,6 +108,9 @@ function Engine() {
       if (actions.length > 0) {
         actions.forEach((action) => {
           if (isDisassembled) {
+            console.log(controls.minDistance);
+            controls.minDistance = 15;
+            controls.maxDistance = 18;
             action.timeScale = -1; // Reverse
             action.paused = false;
             // Ensure animation plays from the end when reversing if it's at the start
@@ -115,6 +119,8 @@ function Engine() {
             }
             action.play();
           } else {
+            controls.minDistance = 5;
+            controls.maxDistance = 20;
             action.timeScale = 1; // Normal
             action.paused = false; // Ensure it's not paused
             action.reset().play();
@@ -195,16 +201,77 @@ function Engine() {
         <LightBlueDiv />
         <DarkBlueDiv />
       </Separator>
-      <CanvasContainer ref={mountRef} />
+      <Container>
+        <TextBox1>
+          <div>
+            <h2>Engine:</h2>
+            <p>4.0L V8 (P60B40)</p>
+          </div>
+          <div>
+            <h2>Power:</h2>
+            <p>~493 hp (368 kW)</p>
+          </div>
+          <div>
+            <h2>Torque:</h2>
+            <p>~480 Nm (354 lb-ft)</p>
+          </div>
+        </TextBox1>
+        <CanvasContainer ref={mountRef} />
+        <TextBox2>
+          <div>
+            <h2>Layout:</h2>
+            <p>Naturally aspirated</p>
+          </div>
+          <div>
+            <h2>Weight:</h2>
+            <p>~135 kg (engine only)</p>
+          </div>
+          <div>
+            <h2>Redline:</h2>
+            <p>~8,200 rpm</p>
+          </div>
+        </TextBox2>
+      </Container>
     </MainWrapper>
   );
 }
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100%;
+  position: relative; /* Optional: to contain z-indexes if needed, but MainWrapper already does */
+`;
+
+const TextBox1 = styled.div`
+  position: relative; /* Add this */
+
+  display: flex;
+  flex-direction: column;
+  color: var(--primaryBackgroundWhite);
+  font-size: 20px;
+  padding-top: 12%;
+  z-index: 1; /* Add this - lower than CanvasContainer */
+`;
+const TextBox2 = styled.div`
+  position: relative; /* Add this */
+
+  display: flex;
+  flex-direction: column;
+  color: var(--primaryBackgroundWhite);
+  font-size: 20px;
+  padding-top: 12%;
+  z-index: 1; /* */
+`;
+
 const CanvasContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin-left: 20%;
-  z-index: 11;
+  padding-top: 12%; /* This padding means the canvas content starts 12% from the top of this div */
+  position: relative;
+  z-index: 11; /* This should make it stack above siblings */
+  transform: translateZ(0); /* Helps promote to a new compositing layer */
+  /* overflow: hidden; // Ensure this is commented out or absent */
 `;
 
 const Separator = styled.div`
@@ -229,7 +296,11 @@ const DarkBlueDiv = styled.div`
 const MainWrapper = styled.div`
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle, #e7222e 0%, rgba(102, 16, 16, 1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(102, 16, 16, 1) 25%,
+    rgb(16, 37, 63) 75%
+  );
   width: 100%;
   height: 100vh;
   text-align: center;
