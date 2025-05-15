@@ -15,10 +15,9 @@ function Landing() {
         <GradientWrapper>
           <MainWrapper>
             <Navbar>
-              <p>OVERVIEW</p>
-              <p>ENGINE</p>
-
-              <p>HISTORY</p>
+              <p id="navbar">OVERVIEW</p>
+              <p id="navbar">HISTORY</p>
+              <p id="navbar">ENGINE</p>
             </Navbar>
             <StyledHeader>
               <h1>THE M3</h1>
@@ -38,6 +37,7 @@ function Landing() {
               </Canvas>
             </CanvasWrapper>
           </MainWrapper>
+          <EmPerformance></EmPerformance>
           <History />
         </GradientWrapper>
 
@@ -179,4 +179,15 @@ const MainWrapper = styled.div`
   -ms-overflow-style: none; /* Correct property with hyphen */
   scrollbar-width: none;
 `;
+const EmPerformance = styled.div`
+  background-image: url('../src/assets/sliki/pozadinaProtivChoveshtvoto.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 50vh;
+  position: absolute;
+  top: 690px;
+  z-index: 0;
+`;
+
 export default Landing;

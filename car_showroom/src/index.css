@@ -8,19 +8,28 @@ body {
   margin: 0;
   padding: 0;
 }
+#history{
+  z-index: 2;
+}
+#navbar{
+  font-family: 'Helvetica', serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size:35px;
+}
 p {
-  font-family: 'Arvo', serif;
+  font-family: "Courier Prime", monospace;
   font-weight: 400;
   font-style: normal;
 }
 h1,
 h2,
 h3 {
-  font-family: 'Arvo', serif;
-  font-weight: 400;
-  font-style: normal;
+  font-family: 'Helvetica', serif;
+  font-weight: 700;
+  font-style: bold;
+  text-transform: uppercase;
 }
-
 * {
   box-sizing: border-box;
 }
@@ -32,3 +41,4 @@ h3 {
 }
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');

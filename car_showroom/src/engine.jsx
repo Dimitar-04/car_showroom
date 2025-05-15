@@ -64,7 +64,7 @@ function Engine() {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/Assembled V8 Engine with Disassemble Animation 3 seconds.glb',
+      '/models/Assembled V8 Engine with Disassemble Animation 3 seconds.glb',
       (gltf) => {
         const mesh = gltf.scene;
         mesh.scale.set(0.6, 0.6, 0.6);
