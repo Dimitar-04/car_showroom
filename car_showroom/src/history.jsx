@@ -11,48 +11,55 @@ function History() {
   const [currentIndex, setCurrentIndex] = useState(0); // State for current item index
   const scrollableContainerRef = useRef(null); // Ref for the scrollable div
   const scrollTimeoutRef = useRef(null);
+  const AUTO_SCROLL_INTERVAL = 5000; // 3 seconds
+  const AUTO_SCROLL_RESUME_DELAY = 15000; // 15 seconds
+  const autoScrollIntervalRef = useRef(null);
+  const resumeTimeoutRef = useRef(null);
   const gridItems = [
     {
-      title: 'The Legend of the E46 M3 GTR',
-      file: 'The Legend of the E46 M3 GTR.txt',
+      title: 'A Racing Icon',
+      file: '/texts/A Racing Icon.txt',
     },
-    { title: "Rare Collector's Dream", file: `Rare Collectors Dream.txt` },
-    {
-      title: 'Racing Legacy That Defined an Era',
-      file: 'Racing Legacy That Defined an Era.txt',
+    { title: "V8 Power",
+      file: `/texts/V8 Power.txt` 
     },
     {
-      title: 'From the Track to the Streets',
-      file: 'From the Track to the Streets.txt',
+      title: 'Banned for Dominance',
+      file: '/texts/Banned for Dominance.txt',
     },
     {
-      title: "Symbol of BMW's Motorsport Excellence",
-      file: `Symbol of BMWs Motorsport Excellence.txt`,
-    },
-    {
-      title: 'An Icon That Transcends Generations',
-      file: 'An Icon That Transcends Generations.txt',
+      title: 'The Ultimate Rarity',
+      file: '/texts/The Ultimate Rarity.txt',
     },
   ];
 
   useEffect(() => {
     const loadTextFile = async (file) => {
-      const encodedFile = encodeURIComponent(file);
-      const response = await fetch(`../src/assets/${encodedFile}`);
-      const text = await response.text();
+  try {
+    const response = await fetch(file);
+    if (!response.ok) throw new Error('File not found');
+    const text = await response.text();
+    console.log(text);
+    return text;
+  } catch (error) {
+    console.error("Failed to load text file:", error);
+    return "Error loading file.";
+  }
+};
 
-      return text;
-    };
-
-    const loadAllFiles = async () => {
+ const loadAllFiles = async () => {
       const contents = {};
       for (let item of gridItems) {
         contents[item.title] = await loadTextFile(item.file);
+        if (item.file === 'The Ultimate Rarity.txt') {
+          contents[item.title] = await loadTextFile('A Racing Icon.txt');
+        }
       }
       setTextContents(contents);
     };
     loadAllFiles();
   }, []);
+  
   const truncateText = (text, wordLimit = 30) => {
     if (!text) return '';
     const words = text.split(' ');
@@ -81,9 +88,41 @@ function History() {
       dialogRef.current.close();
     }
   };
+    // Start auto-scroll
+  const startAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) return; // already running
+    autoScrollIntervalRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % gridItems.length);
+    }, AUTO_SCROLL_INTERVAL);
+  }, [gridItems.length]);
+
+  // Stop auto-scroll
+  const stopAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
+    }
+  }, []);
+
+  // On user interaction, stop auto-scroll and schedule resume
+  const handleUserInteraction = useCallback(() => {
+    stopAutoScroll();
+
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+
+    resumeTimeoutRef.current = setTimeout(() => {
+      startAutoScroll();
+    }, AUTO_SCROLL_RESUME_DELAY);
+  }, [startAutoScroll, stopAutoScroll]);
+
+  // Wheel scroll handler with pause/resume integrated
   const handleWheelScroll = useCallback(
     (event) => {
       event.preventDefault();
+
+      handleUserInteraction(); // pause auto scroll and set resume timer
 
       if (scrollTimeoutRef.current || gridItems.length === 0) {
         return;
@@ -94,7 +133,8 @@ function History() {
       if (event.deltaY < 0) {
         // Scroll up
         setCurrentIndex((prevIndex) => {
-          const newIndex = Math.max(0, prevIndex - 1);
+          // infinite scroll upwards
+          const newIndex = prevIndex === 0 ? gridItems.length - 1 : prevIndex - 1;
           if (newIndex !== prevIndex) {
             scrollTimeoutRef.current = setTimeout(() => {
               scrollTimeoutRef.current = null;
@@ -105,7 +145,8 @@ function History() {
       } else if (event.deltaY > 0) {
         // Scroll down
         setCurrentIndex((prevIndex) => {
-          const newIndex = Math.min(gridItems.length - 1, prevIndex + 1);
+          // infinite scroll downwards
+          const newIndex = (prevIndex + 1) % gridItems.length;
           if (newIndex !== prevIndex) {
             scrollTimeoutRef.current = setTimeout(() => {
               scrollTimeoutRef.current = null;
@@ -115,7 +156,7 @@ function History() {
         });
       }
     },
-    [gridItems.length]
+    [gridItems.length, handleUserInteraction]
   );
 
   useEffect(() => {
@@ -127,6 +168,9 @@ function History() {
       container.addEventListener('wheel', wheelListener, { passive: false });
     }
 
+    // Start auto scroll on mount
+    startAutoScroll();
+
     return () => {
       if (container) {
         container.removeEventListener('wheel', wheelListener);
@@ -135,13 +179,18 @@ function History() {
         clearTimeout(scrollTimeoutRef.current);
         scrollTimeoutRef.current = null;
       }
+      stopAutoScroll();
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
+      document.body.style.overflow = ''; // reset any overflow lock on unmount
     };
-  }, [handleWheelScroll]);
+  }, [handleWheelScroll, startAutoScroll, stopAutoScroll]);
 
   return (
     <MainWrapper>
       <StyledHeader>
-        <h1>HISTORY</h1>
+        <h1 id="history">HISTORY</h1>
       </StyledHeader>
       <MainContainer>
         <ScrollableTextItemContainer ref={scrollableContainerRef}>
@@ -271,10 +320,11 @@ const TextItemCard = styled.div`
   justify-content: center;
   align-items: flex-start; // Or 'center' if you prefer
   overflow: hidden;
+  margin-top: 40px;
   h2 {
-    color: rgb(16, 61, 99);
+    color: rgb(0, 0, 0);
     cursor: pointer;
-    font-size: 1.8em;
+    font-size: 55px;
     margin-bottom: 15px;
     transition: color 0.3s ease;
     &:hover {
@@ -497,7 +547,7 @@ const CloseButton = styled.button`
 
 const Paragraph = styled.p`
   color: black;
-  font-size: 16px; /* Adjusted for space */
+  font-size: 32px; /* Adjusted for space */
   text-align: justify;
   text-justify: inter-word;
   line-height: 1.5; /* Adjusted for space */
@@ -525,9 +575,9 @@ const TextsContainer = styled.div`
 `;
 const ImagesContainer = styled.div`
   width: 42%;
-  height: 130vh;
+  height: 110vh;
+  margin-top: 4%;
   margin-left: 2%;
-  margin-bottom: 13%;
   position: relative;
   &::-webkit-scrollbar {
     display: none;
@@ -552,17 +602,25 @@ const MainWrapper = styled.div`
 `;
 const StyledHeader = styled.div`
   position: absolute;
-
   width: 100vw;
   display: flex;
   justify-content: center;
 
   h1 {
     margin: 0;
-    font-size: 57px;
+    font-size: 100px;
     color: var(--textColor);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
+`;
+const EmPerformance = styled.div`
+  background-image: url('../src/assets/sliki/pozadinaProtivChoveshtvoto.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 50vh;
+  position: absolute;
+  top: 50px;
 `;
 
 export default History;
