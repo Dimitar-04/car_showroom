@@ -20,9 +20,7 @@ function History() {
       title: 'A Racing Icon',
       file: '/texts/A Racing Icon.txt',
     },
-    { title: "V8 Power",
-      file: `/texts/V8 Power.txt` 
-    },
+    { title: 'V8 Power', file: `/texts/V8 Power.txt` },
     {
       title: 'Banned for Dominance',
       file: '/texts/Banned for Dominance.txt',
@@ -35,19 +33,19 @@ function History() {
 
   useEffect(() => {
     const loadTextFile = async (file) => {
-  try {
-    const response = await fetch(file);
-    if (!response.ok) throw new Error('File not found');
-    const text = await response.text();
-    console.log(text);
-    return text;
-  } catch (error) {
-    console.error("Failed to load text file:", error);
-    return "Error loading file.";
-  }
-};
+      try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error('File not found');
+        const text = await response.text();
+        console.log(text);
+        return text;
+      } catch (error) {
+        console.error('Failed to load text file:', error);
+        return 'Error loading file.';
+      }
+    };
 
- const loadAllFiles = async () => {
+    const loadAllFiles = async () => {
       const contents = {};
       for (let item of gridItems) {
         contents[item.title] = await loadTextFile(item.file);
@@ -59,7 +57,7 @@ function History() {
     };
     loadAllFiles();
   }, []);
-  
+
   const truncateText = (text, wordLimit = 30) => {
     if (!text) return '';
     const words = text.split(' ');
@@ -88,7 +86,7 @@ function History() {
       dialogRef.current.close();
     }
   };
-    // Start auto-scroll
+  // Start auto-scroll
   const startAutoScroll = useCallback(() => {
     if (autoScrollIntervalRef.current) return; // already running
     autoScrollIntervalRef.current = setInterval(() => {
@@ -134,7 +132,8 @@ function History() {
         // Scroll up
         setCurrentIndex((prevIndex) => {
           // infinite scroll upwards
-          const newIndex = prevIndex === 0 ? gridItems.length - 1 : prevIndex - 1;
+          const newIndex =
+            prevIndex === 0 ? gridItems.length - 1 : prevIndex - 1;
           if (newIndex !== prevIndex) {
             scrollTimeoutRef.current = setTimeout(() => {
               scrollTimeoutRef.current = null;
@@ -229,7 +228,6 @@ function History() {
                   'Racing'
                 )
               }
-              style={{ marginTop: '20px' }}
             />
             <h2
               style={{
@@ -251,7 +249,6 @@ function History() {
                   'Road Legal'
                 )
               }
-              style={{ marginTop: '20px' }}
             />
             <h2
               style={{
@@ -273,7 +270,6 @@ function History() {
                   '24 Hours of Le Mans'
                 )
               }
-              style={{ marginTop: '20px' }}
             />
             <h2
               style={{
@@ -320,7 +316,7 @@ const TextItemCard = styled.div`
   justify-content: center;
   align-items: flex-start; // Or 'center' if you prefer
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 2%;
   h2 {
     color: rgb(0, 0, 0);
     cursor: pointer;
@@ -335,14 +331,13 @@ const TextItemCard = styled.div`
 
 const RollerWrapper = styled.div`
   width: 100%;
-  transition: transform 0.75s ease-in-out; // Adjust timing and easing as desired
+  transition: transform 0.75s ease-in-out;
 `;
 const ScrollableTextItemContainer = styled.div`
   width: 50%;
-  height: 700px;
+  height: 750px;
   overflow: hidden;
   position: relative;
-  margin-top: 50px;
 `;
 const DialogImageContainer = styled.div`
   display: flex;
@@ -370,7 +365,7 @@ const DialogImage = styled.img`
 `;
 const Card3 = styled.div`
   width: 50%;
-  height: 400px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   z-index: 11;
@@ -412,7 +407,7 @@ const Card3 = styled.div`
 `;
 const Card2 = styled.div`
   width: 50%;
-  height: 400px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   margin-top: 0;
@@ -453,7 +448,7 @@ const Card2 = styled.div`
 `;
 const Card = styled.div`
   width: 50%;
-  height: 400px;
+  height: 300px;
   display: flex;
   flex-direction: column;
 
@@ -560,6 +555,7 @@ const MainContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+
   margin-top: 150px;
   margin-bottom: 1.5%;
   margin-left: 2%;
@@ -601,11 +597,11 @@ const MainWrapper = styled.div`
   scrollbar-width: none;
 `;
 const StyledHeader = styled.div`
-  position: absolute;
+  // position: absolute;
   width: 100vw;
   display: flex;
   justify-content: center;
-
+  margin-top: 2%;
   h1 {
     margin: 0;
     font-size: 100px;
