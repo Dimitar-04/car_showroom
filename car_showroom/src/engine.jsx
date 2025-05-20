@@ -261,7 +261,7 @@ const TextBox1 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:40%;
+  gap:35%;
 
   color: var(--primaryBackgroundWhite);
   
@@ -274,6 +274,7 @@ const CanvasContainer = styled.div`
   height: 100%;
   
   position: absolute;
+  top: 12%;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -11,8 +11,8 @@ function History() {
   const [currentIndex, setCurrentIndex] = useState(0); // State for current item index
   const scrollableContainerRef = useRef(null); // Ref for the scrollable div
   const scrollTimeoutRef = useRef(null);
-  const AUTO_SCROLL_INTERVAL = 5000; // 3 seconds
-  const AUTO_SCROLL_RESUME_DELAY = 15000; // 15 seconds
+  const AUTO_SCROLL_INTERVAL = 10000; // 10 seconds
+  const AUTO_SCROLL_RESUME_DELAY = 20000; // 20 seconds
   const autoScrollIntervalRef = useRef(null);
   const resumeTimeoutRef = useRef(null);
   const gridItems = [
@@ -208,7 +208,7 @@ function History() {
             ))}
           </RollerWrapper>
           {gridItems.length === 0 && (
-            <p style={{ color: '#F2F0EF', textAlign: 'center' }}>
+            <p style={{ color: 'white', textAlign: 'center' }}>
               No history items to display.
             </p>
           )}

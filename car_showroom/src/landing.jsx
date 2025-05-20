@@ -50,8 +50,6 @@ const PageContainer = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
-  
-  background: linear-gradient(180deg,rgba(242, 242, 242, 1) 0%, rgba(83, 104, 120, 1) 100%);
 `;
 
 const BackgroundHolder = styled.div`
@@ -80,8 +78,7 @@ const MainWrapper = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  background: #f2f2f2;
-  background: linear-gradient(180deg,rgba(242, 242, 242, 1) 10%, rgba(83, 104, 120, 1) 90%);
+  background: linear-gradient(180deg,rgba(242, 242, 242, 1) 0%, rgba(83, 104, 120, 1) 100%);
 `;
 
 const gradientAnimation = keyframes`
@@ -115,13 +112,16 @@ const slideUp = keyframes`
   `;
 
 const Navbar = styled.div`
-  height: 10vh;
+  height: 30vh;
+
   position: absolute;
   display: flex;
   gap: 20px;
-  font-size: 20%;
+  
+  font-size: 50%;
   top: 0;
   right: 5%;
+  
   cursor: pointer;
   color: var(--textColor);
   animation: ${slideIn} 1s ease-out;
