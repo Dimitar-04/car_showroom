@@ -1,18 +1,16 @@
 import styled, { keyframes } from 'styled-components';
-
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei'; // optional but convenient
 import { Car } from '../Components/car';
 import Engine from './engine';
-import Interior from './interior';
 import History from './history';
+
 function Landing() {
   return (
     <>
       <PageContainer>
         <BackgroundHolder></BackgroundHolder>
-        <GradientWrapper>
           <MainWrapper>
             <Navbar>
               <p id="navbar">OVERVIEW</p>
@@ -37,40 +35,55 @@ function Landing() {
               </Canvas>
             </CanvasWrapper>
           </MainWrapper>
-          <EmPerformance></EmPerformance>
           <History />
-        </GradientWrapper>
-
         <Engine />
       </PageContainer>
     </>
   );
 }
 
-const GradientWrapper = styled.div`
-  background-image: linear-gradient(
-    to bottom,
-
-    #f6f4f1 30%,
-    #81c4ff 100%
-  );
-  z-index: 1;
-`;
-const BackgroundHolder = styled.div`
-  background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
-  background-size: cover;
-  width: 100%;
-  height: 50vh;
-  position: absolute;
-  z-index: 0;
-`;
 const PageContainer = styled.div`
   width: 100%;
   height: auto;
+
+  position: relative;
+
   overflow-x: hidden;
   overflow-y: auto;
-  position: relative;
+  
+  background: linear-gradient(180deg,rgba(242, 242, 242, 1) 0%, rgba(83, 104, 120, 1) 100%);
 `;
+
+const BackgroundHolder = styled.div`
+  width: 100%;
+  height: 50vh;
+
+  position: absolute;
+
+  background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
+  background-size: cover;
+  
+  z-index: 10;
+`;
+
+const MainWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 160vh;
+  z-index: 1;
+
+  background-size: cover;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  background: #f2f2f2;
+  background: linear-gradient(180deg,rgba(242, 242, 242, 1) 10%, rgba(83, 104, 120, 1) 90%);
+`;
+
 const gradientAnimation = keyframes`
   0% {
     background-position: 0% 0%;
@@ -102,10 +115,11 @@ const slideUp = keyframes`
   `;
 
 const Navbar = styled.div`
+  height: 10vh;
   position: absolute;
   display: flex;
   gap: 20px;
-  font-size: 23px;
+  font-size: 20%;
   top: 0;
   right: 5%;
   cursor: pointer;
@@ -163,31 +177,6 @@ const StyledHeader = styled.div`
     text-fill-color: transparent;
     animation: ${gradientAnimation} 2s ease-out forwards; /* Apply the gradient animation */
   }
-`;
-
-const MainWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-
-  background-size: cover;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none; /* Correct property with hyphen */
-  scrollbar-width: none;
-`;
-const EmPerformance = styled.div`
-  background-image: url('../src/assets/sliki/pozadinaProtivChoveshtvoto.png');
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 50vh;
-  position: absolute;
-  top: 690px;
-  z-index: 0;
 `;
 
 export default Landing;

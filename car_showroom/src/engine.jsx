@@ -197,115 +197,91 @@ function Engine() {
 
   return (
     <MainWrapper>
-      <Separator>
-        <LightBlueDiv />
-        <DarkBlueDiv />
-      </Separator>
       <Container>
         <TextBox1>
-          <div>
-            <h2>Engine:</h2>
-            <p>4.0L V8 (P60B40)</p>
+          <div id="textbox1">
+            <div>
+              <h2>Engine:</h2>
+              <p>4.0L V8 (P60B40)</p>
+            </div>
+            <div id="left_indent">
+              <h2>Power:</h2>
+              <p>493 hp (368 kW)</p>
+            </div>
+            <div>
+              <h2>Torque:</h2>
+              <p>480 Nm (354 lb-ft)</p>
+            </div>
           </div>
-          <div>
-            <h2>Power:</h2>
-            <p>~493 hp (368 kW)</p>
-          </div>
-          <div>
-            <h2>Torque:</h2>
-            <p>~480 Nm (354 lb-ft)</p>
+          <div id="textbox2">
+            <div>
+              <h2>Layout:</h2>
+              <p>Naturally aspirated</p>
+            </div>
+            <div id="right_indent">
+              <h2>Weight:</h2>
+              <p>135 kg (engine only)</p>
+            </div>
+            <div>
+              <h2>Redline:</h2>
+              <p>8,200 rpm</p>
+            </div>
           </div>
         </TextBox1>
         <CanvasContainer ref={mountRef} />
-        <TextBox2>
-          <div>
-            <h2>Layout:</h2>
-            <p>Naturally aspirated</p>
-          </div>
-          <div>
-            <h2>Weight:</h2>
-            <p>~135 kg (engine only)</p>
-          </div>
-          <div>
-            <h2>Redline:</h2>
-            <p>~8,200 rpm</p>
-          </div>
-        </TextBox2>
       </Container>
     </MainWrapper>
   );
 }
 
+const MainWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  background: radial-gradient(circle,rgba(42, 52, 61, 1) 4%, rgba(8, 27, 46, 1) 32%);
+  
+  text-align: center;
+`;
+
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   height: 100%;
-  position: relative; /* Optional: to contain z-indexes if needed, but MainWrapper already does */
+  position: relative;
+  display: flex;
+  justify-content: center;
 `;
 
 const TextBox1 = styled.div`
-  position: relative; /* Add this */
 
+  position: relative; 
   display: flex;
-  flex-direction: column;
-  color: var(--primaryBackgroundWhite);
-  font-size: 20px;
-  padding-top: 12%;
-  z-index: 1; /* Add this - lower than CanvasContainer */
-`;
-const TextBox2 = styled.div`
-  position: relative; /* Add this */
+  justify-content: center;
+  align-items: center;
+  gap:40%;
 
-  display: flex;
-  flex-direction: column;
   color: var(--primaryBackgroundWhite);
-  font-size: 20px;
-  padding-top: 12%;
-  z-index: 1; /* */
+  
+  font-size: 150%;
+  z-index: 1; 
 `;
 
 const CanvasContainer = styled.div`
-  width: 100%;
+  width: 60%;
   height: 100%;
-  padding-top: 12%; /* This padding means the canvas content starts 12% from the top of this div */
-  position: relative;
-  z-index: 11; /* This should make it stack above siblings */
-  transform: translateZ(0); /* Helps promote to a new compositing layer */
-  /* overflow: hidden; // Ensure this is commented out or absent */
-`;
-
-const Separator = styled.div`
-  width: 100%;
-  margin-bottom: 2.5%;
-  position: relative;
-  z-index: 10;
-`;
-
-const LightBlueDiv = styled.div`
-  background-color: #81c4ff;
-  height: 2vh;
-  width: 100%;
-`;
-
-const DarkBlueDiv = styled.div`
-  background-color: #16588e;
-  height: 2vh;
-  width: 100%;
-`;
-
-const MainWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(
-    circle,
-    rgba(102, 16, 16, 1) 25%,
-    rgb(16, 37, 63) 75%
-  );
-  width: 100%;
-  height: 100vh;
-  text-align: center;
+  
+  position: absolute;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 11;
+  transform: translateZ(0);
 `;
+
+
 
 export default Engine;

@@ -1,6 +1,6 @@
 :root {
-  --textColor: #333a3f;
-  --primaryBackgroundWhite: #f6f4f1;
+  --textColor: rgba(8, 27, 46, 1);
+  --primaryBackgroundWhite: #E1E3E2;
 }
 
 html,
@@ -17,6 +17,11 @@ body {
   font-style: normal;
   font-size:35px;
 }
+#textbox1,
+#textbox2 {
+  width: 500px;
+}
+
 p {
   font-family: "Courier Prime", monospace;
   font-weight: 400;

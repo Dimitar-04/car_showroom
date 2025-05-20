@@ -188,9 +188,6 @@ function History() {
 
   return (
     <MainWrapper>
-      <StyledHeader>
-        <h1 id="history">HISTORY</h1>
-      </StyledHeader>
       <MainContainer>
         <ScrollableTextItemContainer ref={scrollableContainerRef}>
           <RollerWrapper
@@ -211,7 +208,7 @@ function History() {
             ))}
           </RollerWrapper>
           {gridItems.length === 0 && (
-            <p style={{ color: 'white', textAlign: 'center' }}>
+            <p style={{ color: '#F2F0EF', textAlign: 'center' }}>
               No history items to display.
             </p>
           )}
@@ -307,6 +304,7 @@ function History() {
     </MainWrapper>
   );
 }
+
 const TextItemCard = styled.div`
   height: ${ITEM_CARD_HEIGHT_CSS};
   padding: 20px;
@@ -318,7 +316,7 @@ const TextItemCard = styled.div`
   overflow: hidden;
   margin-top: 2%;
   h2 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 252, 252);
     cursor: pointer;
     font-size: 55px;
     margin-bottom: 15px;
@@ -515,7 +513,7 @@ const StyledDialog = styled.dialog`
   border-radius: 8px;
   overflow: hidden;
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
   }
   &::-webkit-scrollbar {
     display: none;
@@ -584,7 +582,7 @@ const ImagesContainer = styled.div`
 const MainWrapper = styled.div`
   position: relative;
 
-  background: var(--primaryBackgroundColor);
+  background:rgb(8, 27, 46);
   width: 100%;
   min-height: 100vh;
 
@@ -596,19 +594,7 @@ const MainWrapper = styled.div`
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
 `;
-const StyledHeader = styled.div`
-  // position: absolute;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  margin-top: 2%;
-  h1 {
-    margin: 0;
-    font-size: 100px;
-    color: var(--textColor);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-`;
+
 const EmPerformance = styled.div`
   background-image: url('../src/assets/sliki/pozadinaProtivChoveshtvoto.png');
   background-size: cover;
