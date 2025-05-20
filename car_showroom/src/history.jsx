@@ -539,7 +539,7 @@ const CloseButton = styled.button`
 `;
 
 const Paragraph = styled.p`
-  color: black;
+  color: white;
   font-size: 32px; /* Adjusted for space */
   text-align: justify;
   text-justify: inter-word;

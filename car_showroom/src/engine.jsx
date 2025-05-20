@@ -256,7 +256,6 @@ const Container = styled.div`
 `;
 
 const TextBox1 = styled.div`
-
   position: relative; 
   display: flex;
   justify-content: center;
