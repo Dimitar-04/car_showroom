@@ -119,10 +119,10 @@ function Engine() {
             }
             action.play();
           } else {
-            controls.minDistance = 5;
+            controls.minDistance = 10;
             controls.maxDistance = 20;
-            action.timeScale = 1; // Normal
-            action.paused = false; // Ensure it's not paused
+            action.timeScale = 1;
+            action.paused = false;
             action.reset().play();
           }
         });

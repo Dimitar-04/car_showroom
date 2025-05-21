@@ -200,7 +200,7 @@ function History() {
             {gridItems.map((item) => (
               <TextItemCard key={item.file}>
                 {' '}
-                <h2 onClick={() => openDialogText(item.title)}>{item.title}</h2>
+                <h2>{item.title}</h2>
                 <Paragraph>
                   {textContents[item.title] || 'Loading...'}
                 </Paragraph>
@@ -286,7 +286,6 @@ function History() {
             <>
               <h1>{openDialog}</h1>
               <p>{textContents[openDialog]}</p>
-              <CloseButton onClick={closeDialogByButton}>Close</CloseButton>
             </>
           )}
           {dialogImage && (
@@ -296,7 +295,6 @@ function History() {
                 <DialogImage src={dialogImage.url} alt={dialogImage.caption} />
                 <p>{dialogImage.caption}</p>
               </DialogImageContainer>
-              <CloseButton onClick={closeDialogByButton}>Close</CloseButton>
             </>
           )}
         </DialogContainer>
@@ -317,13 +315,10 @@ const TextItemCard = styled.div`
   margin-top: 2%;
   h2 {
     color: rgb(255, 252, 252);
-    cursor: pointer;
+
     font-size: 55px;
     margin-bottom: 15px;
     transition: color 0.3s ease;
-    &:hover {
-      color: #16588e;
-    }
   }
 `;
 
@@ -371,7 +366,7 @@ const Card3 = styled.div`
   @media (min-width: 1600px) {
     top: 65%;
   }
-  
+
   position: absolute;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -586,7 +581,7 @@ const ImagesContainer = styled.div`
 const MainWrapper = styled.div`
   position: relative;
 
-  background:rgb(8, 27, 46);
+  background: rgb(8, 27, 46);
   width: 100%;
   height: 180vh;
   @media (min-width: 1600px) {
