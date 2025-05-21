@@ -6,7 +6,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Car(props) {
-  const { nodes, materials } = useGLTF('/final w textures.glb')
+  const { nodes, materials } = useGLTF('/models/final w textures.glb')
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -698,4 +698,4 @@ export function Car(props) {
   )
 }
 
-useGLTF.preload('/final w textures.glb')
+useGLTF.preload('/models/final w textures.glb')
