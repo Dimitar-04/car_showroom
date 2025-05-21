@@ -359,8 +359,6 @@ const DialogImage = styled.img`
   max-width: 100%;
   max-height: 400px;
   object-fit: contain;
-
-  border-radius: 8px;
 `;
 const Card3 = styled.div`
   width: 50%;
@@ -492,7 +490,6 @@ const Card = styled.div`
 const DialogContainer = styled.div`
   background-color: white;
   padding: 30px;
-  border-radius: 8px;
   width: 100%;
   max-width: 800px;
   max-height: 100vh;
@@ -500,7 +497,7 @@ const DialogContainer = styled.div`
   overflow-y: hidden;
   h1 {
     margin-top: 0;
-    font-style: italic;
+    color: rgba(8, 27, 46, 1);
   }
 
   p {
@@ -514,7 +511,6 @@ const StyledDialog = styled.dialog`
   background: transparent;
   max-width: 80%;
   max-height: 80vh;
-  border-radius: 8px;
   overflow: hidden;
   &::backdrop {
     background-color: rgba(255, 255, 255, 0.8);
@@ -528,15 +524,15 @@ const StyledDialog = styled.dialog`
 `;
 const CloseButton = styled.button`
   padding: 8px 16px;
-  background-color: #16588e;
+  background-color: rgba(8, 27, 46, 1);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   position: absolute;
-  left: 6px;
-  bottom: 4px;
+  left: 10px;
+  bottom: 10px;
   &:hover {
     background-color: #0d3b5f;
   }
@@ -587,8 +583,10 @@ const MainWrapper = styled.div`
 
   background:rgb(8, 27, 46);
   width: 100%;
-  min-height: 130vh;
-
+  height: 200vh;
+  @media (min-width: 1600px) {
+    height: 130vh;
+  }
   display: flex;
   flex-direction: column;
   &::-webkit-scrollbar {

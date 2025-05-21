@@ -87,7 +87,10 @@ const MainWrapper = styled.div`
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 160vh;
+  height: 200vh;
+  @media (min-width: 1600px) {
+    height: 160vh;
+  }
   z-index: 1;
 
   background-size: cover;
