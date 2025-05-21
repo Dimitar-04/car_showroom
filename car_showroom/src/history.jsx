@@ -366,7 +366,12 @@ const Card3 = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 11;
-  top: 60%;
+  top: 90%;
+
+  @media (min-width: 1600px) {
+    top: 65%;
+  }
+  
   position: absolute;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
