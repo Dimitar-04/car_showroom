@@ -21,9 +21,15 @@ function Landing() {
         <BackgroundHolder></BackgroundHolder>
         <MainWrapper>
           <Navbar>
-            <p class="navbar" onClick={() => scroll(overviewRef)}>OVERVIEW</p>
-            <p class="navbar" onClick={() => scroll(historyRef)}>HISTORY</p>
-            <p class="navbar" onClick={() => scroll(engineRef)}>ENGINE</p>
+            <p class="navbar" onClick={() => scroll(overviewRef)}>
+              OVERVIEW
+            </p>
+            <p class="navbar" onClick={() => scroll(historyRef)}>
+              HISTORY
+            </p>
+            <p class="navbar" onClick={() => scroll(engineRef)}>
+              ENGINE
+            </p>
           </Navbar>
           <StyledHeader>
             <h1>THE M3</h1>
@@ -170,7 +176,7 @@ const Navbar = styled.div`
     /* Ensure the text is on top */
     transition: color 0.2s;
     &:hover {
-      color: black;
+      color: rgba(8, 27, 46, 1);
       cursor: pointer;
     }
   }

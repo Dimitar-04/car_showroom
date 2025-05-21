@@ -1,6 +1,6 @@
 :root {
   --textColor: rgba(8, 27, 46, 1);
-  --primaryBackgroundWhite: #E1E3E2;
+  --primaryBackgroundWhite: #e1e3e2;
 }
 
 html,
@@ -8,14 +8,14 @@ body {
   margin: 0;
   padding: 0;
 }
-#history{
+#history {
   z-index: 2;
 }
-.navbar{
+.navbar {
   font-family: 'Helvetica', serif;
   font-weight: 700;
   font-style: normal;
-  font-size:100%;
+  font-size: 100%;
 }
 #textbox1,
 #textbox2 {
@@ -41,11 +41,11 @@ h2.IntroParagraph {
 p.IntroParagraph {
   width: 50%;
   font-size: 150%;
-  text-align:justify;
+  text-align: justify;
 }
 
 p {
-  font-family: "Courier Prime", monospace;
+  font-family: 'Courier Prime', monospace;
   font-weight: 400;
   font-style: normal;
 }
