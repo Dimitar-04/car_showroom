@@ -11,8 +11,8 @@ function History() {
   const [currentIndex, setCurrentIndex] = useState(0); // State for current item index
   const scrollableContainerRef = useRef(null); // Ref for the scrollable div
   const scrollTimeoutRef = useRef(null);
-  const AUTO_SCROLL_INTERVAL = 10000; // 10 seconds
-  const AUTO_SCROLL_RESUME_DELAY = 15000; // 15 seconds
+  const AUTO_SCROLL_INTERVAL = 10000;
+  const AUTO_SCROLL_RESUME_DELAY = 15000;
   const autoScrollIntervalRef = useRef(null);
   const resumeTimeoutRef = useRef(null);
   const gridItems = [
@@ -58,32 +58,11 @@ function History() {
     loadAllFiles();
   }, []);
 
-  const truncateText = (text, wordLimit = 30) => {
-    if (!text) return '';
-    const words = text.split(' ');
-    if (words.length <= wordLimit) return text;
-    return words.slice(0, wordLimit).join(' ');
-  };
-
-  const openDialogText = (title) => {
-    setOpenDialog(title);
-    setDialogImage(null);
-    if (dialogRef.current) {
-      dialogRef.current.showModal();
-      document.body.style.overflow = 'hidden';
-    }
-  };
   const openDialogImage = (imageUrl, caption, title) => {
     setDialogImage({ url: imageUrl, caption: caption, title: title });
     setOpenDialog(null);
     if (dialogRef.current) {
       dialogRef.current.showModal();
-    }
-  };
-  const closeDialogByButton = () => {
-    setOpenDialog(null);
-    if (dialogRef.current) {
-      dialogRef.current.close();
     }
   };
   // Start auto-scroll
@@ -556,15 +535,6 @@ const MainContainer = styled.div`
 
   margin-bottom: 1.5%;
   margin-left: 2%;
-`;
-const TextsContainer = styled.div`
-  width: 58%;
-  height: 100%;
-
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
 `;
 const ImagesContainer = styled.div`
   width: 42%;
