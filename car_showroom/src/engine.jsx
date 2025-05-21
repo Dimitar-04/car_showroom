@@ -243,8 +243,12 @@ const MainWrapper = styled.div`
   flex-direction: column;
   overflow: hidden;
 
-  background: radial-gradient(circle,rgba(42, 52, 61, 1) 4%, rgba(8, 27, 46, 1) 32%);
-  
+  background: radial-gradient(
+    circle,
+    rgba(42, 52, 61, 1) 4%,
+    rgba(8, 27, 46, 1) 32%
+  );
+
   text-align: center;
 `;
 
@@ -256,22 +260,22 @@ const Container = styled.div`
 `;
 
 const TextBox1 = styled.div`
-  position: relative; 
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:35%;
+  gap: 35%;
 
   color: var(--primaryBackgroundWhite);
-  
+
   font-size: 150%;
-  z-index: 1; 
+  z-index: 1;
 `;
 
 const CanvasContainer = styled.div`
   width: 60%;
   height: 100%;
-  
+
   position: absolute;
   top: 12%;
   display: flex;
@@ -281,7 +285,5 @@ const CanvasContainer = styled.div`
   z-index: 11;
   transform: translateZ(0);
 `;
-
-
 
 export default Engine;
