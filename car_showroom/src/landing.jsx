@@ -34,6 +34,15 @@ function Landing() {
                 <Car scale={1.8}></Car>
               </Canvas>
             </CanvasWrapper>
+            <IntroParagraph>
+              <h2 class="IntroParagraph">THE ULTIMATE DRIVING MACHINE</h2>
+              <p class="IntroParagraph">
+                The BMW M3 GTR is a legendary sports car that combines advanced engineering with striking design. 
+                Built for performance and agility, it delivers exceptional handling and precision on every road and track. 
+                Revered by enthusiasts, the M3 GTR stands as a symbol of BMW’s commitment to driving excellence and motorsport 
+                heritage.
+              </p>
+            </IntroParagraph>
           </MainWrapper>
           <History />
         <Engine />
@@ -41,6 +50,16 @@ function Landing() {
     </>
   );
 }
+
+const IntroParagraph = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  min-width: 70%;
+  
+  margin: 20px auto;
+  color: rgba(8, 27, 46, 1);
+`;
 
 const PageContainer = styled.div`
   width: 100%;
@@ -112,13 +131,13 @@ const slideUp = keyframes`
   `;
 
 const Navbar = styled.div`
-  height: 30vh;
+  height: 10vh;
 
   position: absolute;
   display: flex;
   gap: 20px;
   
-  font-size: 50%;
+  font-size: 20%;
   top: 0;
   right: 5%;
   
@@ -169,7 +188,7 @@ const StyledHeader = styled.div`
   h1 {
     margin: 0;
     font-size: 260px;
-    background: linear-gradient(to bottom, black, rgb(156, 155, 155));
+    background: linear-gradient(to bottom, rgba(8, 27, 46, 1), rgb(114, 114, 114));
     background-size: 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

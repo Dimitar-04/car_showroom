@@ -12,7 +12,7 @@ function History() {
   const scrollableContainerRef = useRef(null); // Ref for the scrollable div
   const scrollTimeoutRef = useRef(null);
   const AUTO_SCROLL_INTERVAL = 10000; // 10 seconds
-  const AUTO_SCROLL_RESUME_DELAY = 20000; // 20 seconds
+  const AUTO_SCROLL_RESUME_DELAY = 15000; // 15 seconds
   const autoScrollIntervalRef = useRef(null);
   const resumeTimeoutRef = useRef(null);
   const gridItems = [
@@ -312,7 +312,7 @@ const TextItemCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; // Or 'center' if you prefer
+  align-items: flex-start;
   overflow: hidden;
   margin-top: 2%;
   h2 {
@@ -336,6 +336,7 @@ const ScrollableTextItemContainer = styled.div`
   height: 750px;
   overflow: hidden;
   position: relative;
+  margin-top: 8%;
 `;
 const DialogImageContainer = styled.div`
   display: flex;
@@ -356,14 +357,14 @@ const DialogImageContainer = styled.div`
 
 const DialogImage = styled.img`
   max-width: 100%;
-  max-height: 300px;
+  max-height: 400px;
   object-fit: contain;
 
   border-radius: 8px;
 `;
 const Card3 = styled.div`
   width: 50%;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   z-index: 11;
@@ -395,6 +396,7 @@ const Card3 = styled.div`
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
   }
 
   img:hover {
@@ -405,7 +407,7 @@ const Card3 = styled.div`
 `;
 const Card2 = styled.div`
   width: 50%;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   margin-top: 0;
@@ -436,6 +438,7 @@ const Card2 = styled.div`
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
   }
 
   img:hover {
@@ -446,7 +449,7 @@ const Card2 = styled.div`
 `;
 const Card = styled.div`
   width: 50%;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
 
@@ -477,6 +480,7 @@ const Card = styled.div`
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
   }
 
   img:hover {
@@ -554,7 +558,6 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  margin-top: 150px;
   margin-bottom: 1.5%;
   margin-left: 2%;
 `;
@@ -584,7 +587,7 @@ const MainWrapper = styled.div`
 
   background:rgb(8, 27, 46);
   width: 100%;
-  min-height: 100vh;
+  min-height: 130vh;
 
   display: flex;
   flex-direction: column;
@@ -593,16 +596,6 @@ const MainWrapper = styled.div`
   }
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
-`;
-
-const EmPerformance = styled.div`
-  background-image: url('../src/assets/sliki/pozadinaProtivChoveshtvoto.png');
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 50vh;
-  position: absolute;
-  top: 50px;
 `;
 
 export default History;

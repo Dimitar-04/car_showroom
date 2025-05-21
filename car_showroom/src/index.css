@@ -15,7 +15,7 @@ body {
   font-family: 'Helvetica', serif;
   font-weight: 700;
   font-style: normal;
-  font-size:400%;
+  font-size:950%;
 }
 #textbox1,
 #textbox2 {
@@ -27,12 +27,21 @@ body {
   margin-bottom: 20%;
 }
 
-
 #left_indent {
   padding-right: 30%;
 }
 #right_indent {
   padding-left: 30%;
+}
+
+h2.IntroParagraph {
+  font-size: 200%;
+  width: 50%;
+}
+p.IntroParagraph {
+  width: 50%;
+  font-size: 150%;
+  text-align:justify;
 }
 
 p {
