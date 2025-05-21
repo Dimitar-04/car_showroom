@@ -7,45 +7,59 @@ import Engine from './engine';
 import History from './history';
 
 function Landing() {
+  const overviewRef = React.useRef(null);
+  const historyRef = React.useRef(null);
+  const engineRef = React.useRef(null);
+
+  const scroll = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <PageContainer>
         <BackgroundHolder></BackgroundHolder>
-          <MainWrapper>
-            <Navbar>
-              <p id="navbar">OVERVIEW</p>
-              <p id="navbar">HISTORY</p>
-              <p id="navbar">ENGINE</p>
-            </Navbar>
-            <StyledHeader>
-              <h1>THE M3</h1>
-            </StyledHeader>
-            <CanvasWrapper>
-              <Canvas style={{ width: '75%', height: '100%' }}>
-                <Environment preset="studio" />
-                <OrbitControls
-                  minDistance={5} // Minimum zoom distance (can't get closer than this)
-                  maxDistance={6} // Maximum zoom distance (can't get further than this)
-                  zoomSpeed={0.2}
-                  enablePan={false}
-                  minPolarAngle={Math.PI / 4}
-                  maxPolarAngle={Math.PI / 2}
-                />
-                <Car scale={1.8}></Car>
-              </Canvas>
-            </CanvasWrapper>
-            <IntroParagraph>
-              <h2 class="IntroParagraph">THE ULTIMATE DRIVING MACHINE</h2>
-              <p class="IntroParagraph">
-                The BMW M3 GTR is a legendary sports car that combines advanced engineering with striking design. 
-                Built for performance and agility, it delivers exceptional handling and precision on every road and track. 
-                Revered by enthusiasts, the M3 GTR stands as a symbol of BMW’s commitment to driving excellence and motorsport 
-                heritage.
-              </p>
-            </IntroParagraph>
-          </MainWrapper>
+        <MainWrapper>
+          <Navbar>
+            <p onClick={() => scroll(overviewRef)}>OVERVIEW</p>
+            <p onClick={() => scroll(historyRef)}>HISTORY</p>
+            <p onClick={() => scroll(engineRef)}>ENGINE</p>
+          </Navbar>
+          <StyledHeader>
+            <h1>THE M3</h1>
+          </StyledHeader>
+          <CanvasWrapper>
+            <Canvas style={{ width: '75%', height: '100%' }}>
+              <Environment preset="studio" />
+              <OrbitControls
+                minDistance={5}
+                maxDistance={6}
+                zoomSpeed={0.2}
+                enablePan={false}
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI / 2}
+              />
+              <Car scale={1.8}></Car>
+            </Canvas>
+          </CanvasWrapper>
+          <IntroParagraph>
+            <h2 class="IntroParagraph">THE ULTIMATE DRIVING MACHINE</h2>
+            <p class="IntroParagraph">
+              The BMW M3 GTR is a legendary sports car that combines advanced
+              engineering with striking design. Built for performance and
+              agility, it delivers exceptional handling and precision on every
+              road and track. Revered by enthusiasts, the M3 GTR stands as a
+              symbol of BMW’s commitment to driving excellence and motorsport
+              heritage.
+            </p>
+          </IntroParagraph>
+        </MainWrapper>
+        <div ref={historyRef}>
           <History />
-        <Engine />
+        </div>
+        <div ref={engineRef}>
+          <Engine />
+        </div>
       </PageContainer>
     </>
   );
@@ -56,7 +70,7 @@ const IntroParagraph = styled.div`
   justify-content: center;
   width: 70%;
   min-width: 70%;
-  
+
   margin: 20px auto;
   color: rgba(8, 27, 46, 1);
 `;
@@ -79,8 +93,9 @@ const BackgroundHolder = styled.div`
 
   background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
   background-size: cover;
-  
+
   z-index: 10;
+  pointer-events: none;
 `;
 
 const MainWrapper = styled.div`
@@ -100,7 +115,11 @@ const MainWrapper = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  background: linear-gradient(180deg,rgba(242, 242, 242, 1) 0%, rgba(83, 104, 120, 1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(242, 242, 242, 1) 0%,
+    rgba(83, 104, 120, 1) 100%
+  );
 `;
 
 const gradientAnimation = keyframes`
@@ -135,21 +154,25 @@ const slideUp = keyframes`
 
 const Navbar = styled.div`
   height: 10vh;
-
   position: absolute;
   display: flex;
   gap: 20px;
-  
-  font-size: 20%;
+  font-size: 30px; /* Increase from 20% to 1rem for better visibility */
   top: 0;
   right: 5%;
-  
-  cursor: pointer;
-  color: var(--textColor);
   animation: ${slideIn} 1s ease-out;
-  p:hover {
-    color: black;
-    cursor: pointer;
+  /* Ensure the navbar is on top */
+
+  p {
+    color: #333;
+    padding: 8px 16px;
+    margin: 0;
+    /* Ensure the text is on top */
+    transition: color 0.2s;
+    &:hover {
+      color: black;
+      cursor: pointer;
+    }
   }
 `;
 const canvasSlideUp = keyframes`
@@ -191,7 +214,11 @@ const StyledHeader = styled.div`
   h1 {
     margin: 0;
     font-size: 260px;
-    background: linear-gradient(to bottom, rgba(8, 27, 46, 1), rgb(114, 114, 114));
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 27, 46, 1),
+      rgb(114, 114, 114)
+    );
     background-size: 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
