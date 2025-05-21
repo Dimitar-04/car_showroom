@@ -21,9 +21,9 @@ function Landing() {
         <BackgroundHolder></BackgroundHolder>
         <MainWrapper>
           <Navbar>
-            <p onClick={() => scroll(overviewRef)}>OVERVIEW</p>
-            <p onClick={() => scroll(historyRef)}>HISTORY</p>
-            <p onClick={() => scroll(engineRef)}>ENGINE</p>
+            <p class="navbar" onClick={() => scroll(overviewRef)}>OVERVIEW</p>
+            <p class="navbar" onClick={() => scroll(historyRef)}>HISTORY</p>
+            <p class="navbar" onClick={() => scroll(engineRef)}>ENGINE</p>
           </Navbar>
           <StyledHeader>
             <h1>THE M3</h1>
@@ -153,15 +153,15 @@ const slideUp = keyframes`
   `;
 
 const Navbar = styled.div`
-  height: 10vh;
+  height: 11vh;
   position: absolute;
   display: flex;
+  align-items: center;
   gap: 20px;
-  font-size: 30px; /* Increase from 20% to 1rem for better visibility */
+  font-size: 30px;
   top: 0;
   right: 5%;
   animation: ${slideIn} 1s ease-out;
-  /* Ensure the navbar is on top */
 
   p {
     color: #333;
