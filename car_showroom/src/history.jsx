@@ -366,7 +366,7 @@ const Card3 = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 11;
-  top: 90%;
+  top: 80%;
 
   @media (min-width: 1600px) {
     top: 65%;
@@ -588,7 +588,7 @@ const MainWrapper = styled.div`
 
   background:rgb(8, 27, 46);
   width: 100%;
-  height: 200vh;
+  height: 180vh;
   @media (min-width: 1600px) {
     height: 130vh;
   }
