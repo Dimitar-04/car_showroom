@@ -101,9 +101,9 @@ function Engine() {
 
     // Toggle disassemble/reassemble on click
     let mouseDownTimestamp = 0;
-    const MAX_CLICK_DURATION = 1000; // 1 second
+    const MAX_CLICK_DURATION = 1000;
 
-    // Your existing animation logic - THIS WILL NOT BE CHANGED
+    // Animation
     const handleClick = () => {
       if (actions.length > 0) {
         actions.forEach((action) => {
@@ -121,8 +121,8 @@ function Engine() {
           } else {
             controls.minDistance = 10;
             controls.maxDistance = 20;
-            action.timeScale = 1;
-            action.paused = false;
+            action.timeScale = 1; 
+            action.paused = false; 
             action.reset().play();
           }
         });
@@ -130,7 +130,6 @@ function Engine() {
       }
     };
 
-    // --- New event handlers to measure click duration ---
     const handleMouseDown = () => {
       mouseDownTimestamp = Date.now();
     };
@@ -142,7 +141,7 @@ function Engine() {
       mouseDownTimestamp = 0; // Reset timestamp
 
       if (clickDuration < 100) {
-        handleClick(); // Call your existing animation logic
+        handleClick(); 
       }
     };
 
@@ -153,8 +152,6 @@ function Engine() {
       }
     };
 
-    // Remove the direct 'click' listener and add mousedown/mouseup listeners
-    // renderer.domElement.removeEventListener('click', handleClick); // This line is effectively replaced
     renderer.domElement.addEventListener('mousedown', handleMouseDown);
     renderer.domElement.addEventListener('mouseup', handleMouseUp);
     renderer.domElement.addEventListener('mouseleave', handleMouseLeave);
