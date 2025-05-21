@@ -191,6 +191,7 @@ const canvasSlideUp = keyframes`
     opacity: 1;
   }
 `;
+//styled component for the canvas wrapper
 const CanvasWrapper = styled.div`
   position: relative;
   width: 100%;
