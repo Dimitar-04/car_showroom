@@ -16,7 +16,6 @@ export function Car(props) {
         receiveShadow
         geometry={nodes.HOOD_VENT.geometry}
         material={materials['Black(carbon)']}
-        position={[0, 0.002, 0]}
       />
       <mesh
         castShadow
@@ -77,170 +76,110 @@ export function Car(props) {
         receiveShadow
         geometry={nodes.FRONT_GRILLES.geometry}
         material={materials['Chrome (grille)']}
-        position={[-3.137, -0.105, 0.256]}
-        rotation={[0.027, 0.087, -0.146]}
-        scale={[0.004, 0.078, 0.004]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.WINDSHIELD.geometry}
         material={materials.Glass}
-        position={[-0.688, 0.381, 0.429]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.HOOD_GRILLES.geometry}
         material={materials['Black(carbon)']}
-        position={[-1.854, 0.076, 0.598]}
-        rotation={[0.205, 0.019, 0.206]}
-        scale={[0.022, 0.026, 0.119]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.RIMS.geometry}
         material={materials['Metal (grey)']}
-        position={[-1.637, 0.212, -0.005]}
-        rotation={[0, 0, -Math.PI / 5]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_RIMS.geometry}
         material={materials['Metal (grey)']}
-        position={[-1.637, 0.212, -0.005]}
-        rotation={[0, 0, -Math.PI / 5]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.RIMS_BOLT.geometry}
         material={materials.Black}
-        position={[-1.512, -0.355, 0.937]}
-        rotation={[0, 0, -Math.PI / 5]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_RIM_BOLT.geometry}
         material={materials.Black}
-        position={[1.37, -0.355, 0.937]}
-        rotation={[0, 0, -Math.PI / 5]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_TIRES.geometry}
         material={materials.Rubber}
-        position={[0.122, -0.565, -0.005]}
-        rotation={[-Math.PI, -1.571, 0]}
-        scale={[0.05, 0.041, 0.041]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_TIRES.geometry}
         material={materials.Rubber}
-        position={[0.122, -0.565, -0.005]}
-        rotation={[-Math.PI, -1.571, 0]}
-        scale={[0.05, 0.041, 0.041]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.BREAK_DISK.geometry}
+        geometry={nodes.BREKE_DISK.geometry}
         material={materials['brake disc']}
-        position={[-1.857, 0.168, -0.004]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.193}
       />
+      <mesh castShadow receiveShadow geometry={nodes.BREAKS.geometry} material={materials.Brembo} />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.BREAKS.geometry}
-        material={materials.Brembo}
-        position={[-1.846, 0.17, -0.009]}
-        rotation={[Math.PI / 2, -1.276, 0]}
-        scale={[0.085, 0.166, 0.085]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.BREAK_DISK001.geometry}
+        geometry={nodes.REAR_BRAKE_DISK.geometry}
         material={materials['brake disc']}
-        position={[-1.857, 0.168, -0.021]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.194}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SIDE_VENT_SQUARE.geometry}
         material={materials['Chrome (grille)']}
-        position={[-1.075, 0.005, 0.889]}
-        rotation={[1.431, 0.039, 0.015]}
-        scale={[0.028, 0.011, 0.008]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SPOILER.geometry}
         material={materials['Black(carbon)']}
-        position={[2.229, 0.577, 0.829]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={[0.156, 0.075, 0.075]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.EXAUST.geometry}
         material={materials['Metal (grey)']}
-        position={[-1.652, -0.003, -0.002]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SIDE_STRIPE.geometry}
         material={materials['Car Paint']}
-        position={[-0.062, -0.136, 0.908]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.02}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.DOOR_HANDLE.geometry}
         material={materials['Car Paint']}
-        position={[0.469, 0.137, 0.891]}
-        rotation={[0.073, 0, 0]}
-        scale={0.016}
       />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.BADGE.geometry}
-        material={materials.Logo}
-        position={[-2.196, 0.019, 0.001]}
-        rotation={[0, 0, 0.6]}
-        scale={0.035}
-      />
+      <mesh castShadow receiveShadow geometry={nodes.BADGE.geometry} material={materials.Logo} />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_BADGE.geometry}
         material={materials.Logo}
-        position={[2.299, 0.279, 0]}
-        rotation={[0, 0, -1.799]}
-        scale={0.035}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER001.geometry}
         material={materials.Material}
-        position={[0.046, 0, 0]}
       />
       <mesh
         castShadow
@@ -253,74 +192,60 @@ export function Car(props) {
         receiveShadow
         geometry={nodes.BACK_WHEEL_ARCH.geometry}
         material={materials.Black}
-        position={[-1.652, 0, 0.001]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.WINDOW_FRAME.geometry}
         material={materials.Plastic}
-        position={[-1.652, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.WINDSHIELD_FRAME.geometry}
         material={materials.Plastic}
-        position={[-1.652, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_WINDOW.geometry}
         material={materials.Glass}
-        position={[0.96, 0.407, 0.703]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_WINDOW_BOLTS.geometry}
         material={materials['Metal (grey)']}
-        position={[0.722, 0.331, 0.758]}
-        rotation={[1.102, 0.015, -0.028]}
-        scale={0.054}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_WHEEL_ARCH.geometry}
         material={materials.Black}
-        position={[-1.652, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_WINDOW.geometry}
         material={materials.Glass}
-        position={[-1.652, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.RW_FRAME.geometry}
         material={materials.Plastic}
-        position={[1.561, 0.466, 0.412]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_WINDSHIELD.geometry}
         material={materials.Glass}
-        position={[1.561, 0.464, 0.412]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.BREAKS001.geometry}
+        geometry={nodes.REAR_BRAKES.geometry}
         material={materials.Brembo}
-        position={[1.027, 0.171, -0.012]}
-        rotation={[Math.PI / 2, -1.276, 0]}
-        scale={[0.085, 0.166, 0.085]}
       />
       <mesh
         castShadow
@@ -334,100 +259,42 @@ export function Car(props) {
         geometry={nodes.FRONT_BUMPER004.geometry}
         material={materials.Plastic}
       />
-      <group position={[-2.114, -0.082, 0.457]} rotation={[0, 0, -Math.PI / 2]} scale={0.086}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle_1.geometry}
-          material={materials['Chrome (grille)']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle_2.geometry}
-          material={materials.Plastic}
-        />
-      </group>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Circle001.geometry}
         material={materials['Chrome (grille)']}
-        position={[-2.114, -0.082, 0.457]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={0.086}
       />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere.geometry}
-        material={materials.Lens}
-        position={[-2.024, -0.082, 0.457]}
-        scale={0.024}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere001.geometry}
-        material={materials.Emit}
-        position={[-2.013, -0.082, 0.457]}
-        scale={[0.031, 0.013, 0.013]}
-      />
+      <mesh castShadow receiveShadow geometry={nodes.Sphere.geometry} material={materials.Lens} />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Circle002.geometry}
         material={materials['Chrome (grille)']}
-        position={[-1.898, -0.083, 0.625]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={0.102}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Circle003.geometry}
         material={materials.Emit}
-        position={[-2.114, -0.082, 0.457]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={0.085}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Sphere002.geometry}
         material={materials.Lens}
-        position={[-2.062, -0.083, 0.625]}
-        scale={0.028}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SVETLA.geometry}
         material={materials['Chrome (grille)']}
-        position={[-2.041, -0.084, 0.625]}
-        rotation={[0.629, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SVETLA_2.geometry}
         material={materials['White striped']}
-        position={[-1.654, -0.002, -0.01]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.SVETLA_2001.geometry}
-        material={materials['Chrome (grille)']}
-        position={[-1.942, -0.084, 0.745]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere003.geometry}
-        material={materials.Indicator}
-        position={[-1.942, -0.084, 0.745]}
-        scale={0.042}
       />
       <mesh
         castShadow
@@ -447,7 +314,6 @@ export function Car(props) {
         receiveShadow
         geometry={nodes.REAR_LIGHT001.geometry}
         material={materials.Plastic}
-        position={[2.114, 0.087, 0.744]}
       />
       <mesh
         castShadow
@@ -466,9 +332,6 @@ export function Car(props) {
         receiveShadow
         geometry={nodes.REAR_LIGHTS_3.geometry}
         material={materials.ChromeRed}
-        position={[2.182, 0.096, 0.628]}
-        rotation={[0, -0.134, -Math.PI / 2]}
-        scale={[0.108, 0.108, 0.098]}
       />
       <mesh
         castShadow
@@ -479,216 +342,192 @@ export function Car(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.CIRCLE.geometry}
+        geometry={nodes.REAR_WHITE_LIGHT.geometry}
         material={materials['White striped']}
-        position={[2.183, 0.096, 0.628]}
-        rotation={[0, -0.134, -Math.PI / 2]}
-        scale={[0.086, 0.086, 0.077]}
       />
-      <group position={[2.132, 0.096, 0.639]} rotation={[0, 0, -Math.PI / 2]} scale={0.108}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle013.geometry}
-          material={materials['Red light striped']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle013_1.geometry}
-          material={materials['Red light']}
-        />
-      </group>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['2'].geometry}
         material={materials['Red light striped']}
-        position={[2.17, 0.096, 0.626]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={[0.108, 0.108, 0.098]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['3'].geometry}
-        material={materials.EmitRed}
-        position={[2.143, 0.096, 0.628]}
-        rotation={[0, -0.134, 0]}
-        scale={0.006}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['4'].geometry}
         material={materials['Chrome (grille)']}
-        position={[2.212, 0.157, 0.638]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['5'].geometry}
         material={materials['Chrome (grille)']}
-        position={[2.174, 0.218, 0.698]}
-        rotation={[0, -0.422, -Math.PI / 2]}
-        scale={[0.011, 0.009, 0.009]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['6'].geometry}
         material={materials['Chrome (grille)']}
-        position={[2.17, 0.096, 0.628]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={[0.108, 0.108, 0.098]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['7'].geometry}
         material={materials['Red light']}
-        position={[2.162, 0.13, 0.741]}
-        rotation={[-0.724, -1.542, -2.271]}
-        scale={0.005}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['9'].geometry}
         material={materials['red lights striped 2']}
-        position={[2.181, 0.037, 0.637]}
-        scale={0.091}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['10'].geometry}
-        material={materials.Emit}
-        position={[2.17, 0.218, 0.697]}
-        rotation={[0, -0.431, -Math.PI / 2]}
-        scale={[0.011, 0.009, 0.009]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['8'].geometry}
         material={materials['Red light']}
-        position={[2.221, 0.012, 0.633]}
-        scale={0.005}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.MIRROR.geometry}
         material={materials['Car Paint']}
-        position={[-0.496, 0.283, 0.93]}
-        rotation={[0, 0.409, 0]}
-        scale={0.04}
       />
+      <mesh castShadow receiveShadow geometry={nodes['11'].geometry} material={materials.EmitRed} />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes['11'].geometry}
-        material={materials.EmitRed}
-        position={[2.143, 0.096, 0.623]}
-        rotation={[0, -0.134, 0]}
-        scale={0.006}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.APPEND_1.geometry}
+        geometry={nodes.B_PILLAR.geometry}
         material={materials.Plastic}
-        position={[0.96, 0.407, 0.705]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.APPEND_2.geometry}
+        geometry={nodes.WINDSHIELD_FRAME001.geometry}
         material={materials.Plastic}
-        position={[-0.699, 0.374, 0.429]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER007.geometry}
         material={materials.Black}
-        position={[0.164, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER008.geometry}
         material={materials.Black}
-        position={[0.055, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER009.geometry}
         material={materials.Material}
-        position={[0.046, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.BACK_WINDOW_BOLTS001.geometry}
+        geometry={nodes.FUEL_TANK.geometry}
         material={materials.Plastic}
-        position={[0.722, 0.331, 0.758]}
-        rotation={[1.102, 0.015, -0.028]}
-        scale={0.054}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Rear_light_append.geometry}
-        material={materials['Chrome (grille)']}
-        position={[2.185, 0.096, 0.628]}
-        rotation={[0, -0.134, -Math.PI / 2]}
-        scale={[0.093, 0.093, 0.084]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.angel_eye.geometry}
+        geometry={nodes.RIGHT_ANGEL_EYE.geometry}
         material={materials.Emit}
-        position={[-2.05, -0.082, 0.195]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={0.076}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.EXAUST_BOLTS.geometry}
         material={materials['Metal (grey)']}
-        position={[0.511, 0.204, 0.787]}
-        rotation={[1.102, 0.015, -0.028]}
-        scale={0.054}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.angel_eye001.geometry}
+        geometry={nodes.LEFT_ANGEL_EYE.geometry}
         material={materials.Emit}
-        position={[-2.05, -0.082, 1.446]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={0.076}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere004.geometry}
-        material={materials.Emit}
-        position={[-2.013, -0.082, 0.626]}
-        scale={[0.031, 0.013, 0.013]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.LICENSE_PLATE.geometry}
         material={materials['License plate']}
-        position={[2.35, 0.942, 1.275]}
-        rotation={[0, 0, -Math.PI / 2]}
+      />
+      <mesh castShadow receiveShadow geometry={nodes.Plane.geometry} material={materials.Black} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['5001'].geometry}
+        material={materials['Chrome (grille)']}
+      />
+      <mesh castShadow receiveShadow geometry={nodes['10001'].geometry} material={materials.Emit} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.REAR_WHITE_LIGHT001.geometry}
+        material={materials['White striped']}
+      />
+      <mesh castShadow receiveShadow geometry={nodes['10002'].geometry} material={materials.Emit} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.SIDE_VENT_SQUARE001.geometry}
+        material={materials['Chrome (grille)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Sphere001.geometry}
+        material={materials.Lens}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Sphere003.geometry}
+        material={materials.Lens}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.DOOR_HANDLE001.geometry}
+        material={materials['Car Paint']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['11001'].geometry}
+        material={materials.EmitRed}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.BACK_WINDOW_BOLTS001.geometry}
+        material={materials['Metal (grey)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle_1.geometry}
+        material={materials['Chrome (grille)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle_2.geometry}
+        material={materials.Plastic}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle013.geometry}
+        material={materials['Red light striped']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle013_1.geometry}
+        material={materials['Red light']}
       />
     </group>
   )

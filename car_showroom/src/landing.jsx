@@ -18,8 +18,8 @@ function Landing() {
   return (
     <>
       <PageContainer>
-        <BackgroundHolder></BackgroundHolder>
         <MainWrapper>
+          <BackgroundHolder></BackgroundHolder>
           <Navbar>
             <p class="navbar" onClick={() => scroll(overviewRef)}>
               OVERVIEW
@@ -100,7 +100,7 @@ const BackgroundHolder = styled.div`
   background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
   background-size: cover;
 
-  z-index: 10;
+  z-index: 1;
   pointer-events: none;
 `;
 
@@ -112,7 +112,7 @@ const MainWrapper = styled.div`
   @media (min-width: 1600px) {
     height: 160vh;
   }
-  z-index: 1;
+  z-index: 0;
 
   background-size: cover;
   &::-webkit-scrollbar {
@@ -203,6 +203,7 @@ const CanvasWrapper = styled.div`
   opacity: 0;
   animation: ${canvasSlideUp} 1.5s ease-out forwards;
   animation-delay: 0.2s; /* Start after the header animation begins */
+  z-index: 10;
 `;
 const StyledHeader = styled.div`
   position: absolute;
