@@ -1,8 +1,8 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from 'react';
+import { useGLTF } from '@react-three/drei';
 
 export function Car(props) {
-  const { nodes, materials } = useGLTF('/models/BMW M3.glb')
+  const { nodes, materials } = useGLTF('/models/BMW M3.glb');
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -131,7 +131,12 @@ export function Car(props) {
         geometry={nodes.BREKE_DISK.geometry}
         material={materials['brake disc']}
       />
-      <mesh castShadow receiveShadow geometry={nodes.BREAKS.geometry} material={materials.Brembo} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.BREAKS.geometry}
+        material={materials.Brembo}
+      />
       <mesh
         castShadow
         receiveShadow
@@ -168,7 +173,12 @@ export function Car(props) {
         geometry={nodes.DOOR_HANDLE.geometry}
         material={materials['Car Paint']}
       />
-      <mesh castShadow receiveShadow geometry={nodes.BADGE.geometry} material={materials.Logo} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.BADGE.geometry}
+        material={materials.Logo}
+      />
       <mesh
         castShadow
         receiveShadow
@@ -265,7 +275,12 @@ export function Car(props) {
         geometry={nodes.Circle001.geometry}
         material={materials['Chrome (grille)']}
       />
-      <mesh castShadow receiveShadow geometry={nodes.Sphere.geometry} material={materials.Lens} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Sphere.geometry}
+        material={materials.Lens}
+      />
       <mesh
         castShadow
         receiveShadow
@@ -393,7 +408,12 @@ export function Car(props) {
         geometry={nodes.MIRROR.geometry}
         material={materials['Car Paint']}
       />
-      <mesh castShadow receiveShadow geometry={nodes['11'].geometry} material={materials.EmitRed} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['11'].geometry}
+        material={materials.EmitRed}
+      />
       <mesh
         castShadow
         receiveShadow
@@ -454,21 +474,36 @@ export function Car(props) {
         geometry={nodes.LICENSE_PLATE.geometry}
         material={materials['License plate']}
       />
-      <mesh castShadow receiveShadow geometry={nodes.Plane.geometry} material={materials.Black} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Plane.geometry}
+        material={materials.Black}
+      />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['5001'].geometry}
         material={materials['Chrome (grille)']}
       />
-      <mesh castShadow receiveShadow geometry={nodes['10001'].geometry} material={materials.Emit} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['10001'].geometry}
+        material={materials.Emit}
+      />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_WHITE_LIGHT001.geometry}
         material={materials['White striped']}
       />
-      <mesh castShadow receiveShadow geometry={nodes['10002'].geometry} material={materials.Emit} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['10002'].geometry}
+        material={materials.Emit}
+      />
       <mesh
         castShadow
         receiveShadow
@@ -530,7 +565,7 @@ export function Car(props) {
         material={materials['Red light']}
       />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/models/BMW M3.glb')
+useGLTF.preload('/models/BMW M3.glb');
