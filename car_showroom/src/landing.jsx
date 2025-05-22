@@ -1,76 +1,133 @@
 import styled, { keyframes } from 'styled-components';
-
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei'; // optional but convenient
 import { Car } from '../Components/car';
 import Engine from './engine';
-import Interior from './interior';
 import History from './history';
+
 function Landing() {
+  const overviewRef = React.useRef(null);
+  const historyRef = React.useRef(null);
+  const engineRef = React.useRef(null);
+
+  const scroll = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <PageContainer>
-        <BackgroundHolder></BackgroundHolder>
-        <GradientWrapper>
-          <MainWrapper>
-            <Navbar>
-              <p id="navbar">OVERVIEW</p>
-              <p id="navbar">HISTORY</p>
-              <p id="navbar">ENGINE</p>
-            </Navbar>
-            <StyledHeader>
-              <h1>THE M3</h1>
-            </StyledHeader>
-            <CanvasWrapper>
-              <Canvas style={{ width: '75%', height: '100%' }}>
-                <Environment preset="studio" />
-                <OrbitControls
-                  minDistance={5} // Minimum zoom distance (can't get closer than this)
-                  maxDistance={6} // Maximum zoom distance (can't get further than this)
-                  zoomSpeed={0.2}
-                  enablePan={false}
-                  minPolarAngle={Math.PI / 4}
-                  maxPolarAngle={Math.PI / 2}
-                />
-                <Car scale={1.8}></Car>
-              </Canvas>
-            </CanvasWrapper>
-          </MainWrapper>
-          <EmPerformance></EmPerformance>
+        <MainWrapper>
+          <BackgroundHolder></BackgroundHolder>
+          <Navbar>
+            <p class="navbar" onClick={() => scroll(overviewRef)}>
+              OVERVIEW
+            </p>
+            <p class="navbar" onClick={() => scroll(historyRef)}>
+              HISTORY
+            </p>
+            <p class="navbar" onClick={() => scroll(engineRef)}>
+              ENGINE
+            </p>
+          </Navbar>
+          <StyledHeader>
+            <h1>THE M3</h1>
+          </StyledHeader>
+          <CanvasWrapper>
+            <Canvas style={{ width: '75%', height: '100%' }}>
+              <Environment preset="studio" />
+              <OrbitControls
+                minDistance={5}
+                maxDistance={6}
+                zoomSpeed={0.2}
+                enablePan={false}
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI / 2}
+              />
+              <Car scale={1.8}></Car>
+            </Canvas>
+          </CanvasWrapper>
+          <IntroParagraph>
+            <h2 class="IntroParagraph">THE ULTIMATE DRIVING MACHINE</h2>
+            <p class="IntroParagraph">
+              The BMW M3 GTR is a legendary sports car that combines advanced
+              engineering with striking design. Built for performance and
+              agility, it delivers exceptional handling and precision on every
+              road and track. Revered by enthusiasts, the M3 GTR stands as a
+              symbol of BMW’s commitment to driving excellence and motorsport
+              heritage.
+            </p>
+          </IntroParagraph>
+        </MainWrapper>
+        <div ref={historyRef}>
           <History />
-        </GradientWrapper>
-
-        <Engine />
+        </div>
+        <div ref={engineRef}>
+          <Engine />
+        </div>
       </PageContainer>
     </>
   );
 }
 
-const GradientWrapper = styled.div`
-  background-image: linear-gradient(
-    to bottom,
+const IntroParagraph = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  min-width: 70%;
 
-    #f6f4f1 30%,
-    #81c4ff 100%
-  );
-  z-index: 1;
+  margin: 20px auto;
+  color: rgba(8, 27, 46, 1);
 `;
-const BackgroundHolder = styled.div`
-  background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
-  background-size: cover;
-  width: 100%;
-  height: 50vh;
-  position: absolute;
-  z-index: 0;
-`;
+
 const PageContainer = styled.div`
   width: 100%;
   height: auto;
+
+  position: relative;
+
   overflow-x: hidden;
   overflow-y: auto;
-  position: relative;
 `;
+
+const BackgroundHolder = styled.div`
+  width: 100%;
+  height: 50vh;
+
+  position: absolute;
+
+  background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
+  background-size: cover;
+
+  z-index: 1;
+  pointer-events: none;
+`;
+
+const MainWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 200vh;
+  @media (min-width: 1600px) {
+    height: 160vh;
+  }
+  z-index: 0;
+
+  background-size: cover;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(242, 242, 242, 1) 0%,
+    rgba(83, 104, 120, 1) 100%
+  );
+`;
+
 const gradientAnimation = keyframes`
   0% {
     background-position: 0% 0%;
@@ -102,18 +159,26 @@ const slideUp = keyframes`
   `;
 
 const Navbar = styled.div`
+  height: 11vh;
   position: absolute;
   display: flex;
+  align-items: center;
   gap: 20px;
-  font-size: 23px;
+  font-size: 30px;
   top: 0;
   right: 5%;
-  cursor: pointer;
-  color: var(--textColor);
   animation: ${slideIn} 1s ease-out;
-  p:hover {
-    color: black;
-    cursor: pointer;
+
+  p {
+    color: #333;
+    padding: 8px 16px;
+    margin: 0;
+    /* Ensure the text is on top */
+    transition: color 0.2s;
+    &:hover {
+      color: rgba(8, 27, 46, 1);
+      cursor: pointer;
+    }
   }
 `;
 const canvasSlideUp = keyframes`
@@ -126,6 +191,7 @@ const canvasSlideUp = keyframes`
     opacity: 1;
   }
 `;
+//styled component for the canvas wrapper
 const CanvasWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -137,6 +203,7 @@ const CanvasWrapper = styled.div`
   opacity: 0;
   animation: ${canvasSlideUp} 1.5s ease-out forwards;
   animation-delay: 0.2s; /* Start after the header animation begins */
+  z-index: 10;
 `;
 const StyledHeader = styled.div`
   position: absolute;
@@ -155,7 +222,11 @@ const StyledHeader = styled.div`
   h1 {
     margin: 0;
     font-size: 260px;
-    background: linear-gradient(to bottom, black, rgb(156, 155, 155));
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 27, 46, 1),
+      rgb(114, 114, 114)
+    );
     background-size: 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -163,31 +234,6 @@ const StyledHeader = styled.div`
     text-fill-color: transparent;
     animation: ${gradientAnimation} 2s ease-out forwards; /* Apply the gradient animation */
   }
-`;
-
-const MainWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-
-  background-size: cover;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none; /* Correct property with hyphen */
-  scrollbar-width: none;
-`;
-const EmPerformance = styled.div`
-  background-image: url('../src/assets/sliki/pozadinaProtivChoveshtvoto.png');
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 50vh;
-  position: absolute;
-  top: 690px;
-  z-index: 0;
 `;
 
 export default Landing;

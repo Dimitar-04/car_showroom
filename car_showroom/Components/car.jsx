@@ -1,195 +1,179 @@
-import React, { useRef } from 'react';
-import { useGLTF } from '@react-three/drei';
+import React, { useRef } from 'react'
+import { useGLTF } from '@react-three/drei'
 
 export function Car(props) {
-  const { nodes, materials } = useGLTF('/m3 finalGLAVNO.glb');
+  const { nodes, materials } = useGLTF('/models/BMW M3.glb')
   return (
     <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.HOOD.geometry}
-        material={materials['Material.001']}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.HOOD_VENT.geometry}
-        material={nodes.HOOD_VENT.material}
+        material={materials['Black(carbon)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_HOOD_VENT.geometry}
-        material={nodes.FRONT_HOOD_VENT.material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FENDER.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.DOOR.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_QP.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SIDE_SKIRT.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.TRUNK.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.LICENSE.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_BUMPER.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_GRILLES.geometry}
-        material={nodes.FRONT_GRILLES.material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.WINDSHIELD.geometry}
-        material={nodes.WINDSHIELD.material}
+        material={materials.Glass}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.HOOD_GRILLES.geometry}
-        material={nodes.HOOD_GRILLES.material}
+        material={materials['Black(carbon)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.RIMS.geometry}
-        material={nodes.RIMS.material}
+        material={materials['Metal (grey)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_RIMS.geometry}
-        material={nodes.BACK_RIMS.material}
+        material={materials['Metal (grey)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.RIMS_BOLT.geometry}
-        material={nodes.RIMS_BOLT.material}
+        material={materials.Black}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_RIM_BOLT.geometry}
-        material={nodes.BACK_RIM_BOLT.material}
+        material={materials.Black}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_TIRES.geometry}
-        material={nodes.FRONT_TIRES.material}
+        material={materials.Rubber}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_TIRES.geometry}
-        material={nodes.BACK_TIRES.material}
+        material={materials.Rubber}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.BREAK_DISK.geometry}
-        material={nodes.BREAK_DISK.material}
+        geometry={nodes.BREKE_DISK.geometry}
+        material={materials['brake disc']}
       />
+      <mesh castShadow receiveShadow geometry={nodes.BREAKS.geometry} material={materials.Brembo} />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.BREAKS.geometry}
-        material={nodes.BREAKS.material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.BREAK_DISK001.geometry}
-        material={nodes.BREAK_DISK001.material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.SIDE_VENT.geometry}
-        material={nodes.SIDE_VENT.material}
+        geometry={nodes.REAR_BRAKE_DISK.geometry}
+        material={materials['brake disc']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SIDE_VENT_SQUARE.geometry}
-        material={nodes.SIDE_VENT_SQUARE.material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SPOILER.geometry}
-        material={nodes.SPOILER.material}
+        material={materials['Black(carbon)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.EXAUST.geometry}
-        material={nodes.EXAUST.material}
+        material={materials['Metal (grey)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SIDE_STRIPE.geometry}
-        material={nodes.SIDE_STRIPE.material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.DOOR_HANDLE.geometry}
-        material={nodes.DOOR_HANDLE.material}
+        material={materials['Car Paint']}
       />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.BADGE.geometry}
-        material={nodes.BADGE.material}
-      />
+      <mesh castShadow receiveShadow geometry={nodes.BADGE.geometry} material={materials.Logo} />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_BADGE.geometry}
-        material={nodes.REAR_BADGE.material}
+        material={materials.Logo}
       />
       <mesh
         castShadow
@@ -200,282 +184,353 @@ export function Car(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.FRONT_BUMPER002.geometry}
-        material={materials.Material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.FENDER001.geometry}
-        material={materials.Material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.SIDE_DETAIL.geometry}
-        material={nodes.SIDE_DETAIL.material}
+        material={materials.Black}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_WHEEL_ARCH.geometry}
-        material={nodes.BACK_WHEEL_ARCH.material}
+        material={materials.Black}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.WINDOW_FRAME.geometry}
-        material={nodes.WINDOW_FRAME.material}
+        material={materials.Plastic}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.WINDSHIELD_FRAME.geometry}
-        material={nodes.WINDSHIELD_FRAME.material}
+        material={materials.Plastic}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_WINDOW.geometry}
-        material={nodes.BACK_WINDOW.material}
+        material={materials.Glass}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BACK_WINDOW_BOLTS.geometry}
-        material={nodes.BACK_WINDOW_BOLTS.material}
+        material={materials['Metal (grey)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_WHEEL_ARCH.geometry}
-        material={nodes.FRONT_WHEEL_ARCH.material}
+        material={materials.Black}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_WINDOW.geometry}
-        material={nodes.FRONT_WINDOW.material}
+        material={materials.Glass}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.RW_FRAME.geometry}
-        material={nodes.RW_FRAME.material}
+        material={materials.Plastic}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_WINDSHIELD.geometry}
-        material={nodes.REAR_WINDSHIELD.material}
+        material={materials.Glass}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.BREAKS001.geometry}
-        material={nodes.BREAKS001.material}
+        geometry={nodes.REAR_BRAKES.geometry}
+        material={materials.Brembo}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER003.geometry}
-        material={materials.Material}
+        material={materials['Car Paint']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER004.geometry}
-        material={materials.Material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Circle.geometry}
-        material={nodes.Circle.material}
+        material={materials.Plastic}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Circle001.geometry}
-        material={nodes.Circle001.material}
+        material={materials['Chrome (grille)']}
       />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere.geometry}
-        material={nodes.Sphere.material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere001.geometry}
-        material={nodes.Sphere001.material}
-      />
+      <mesh castShadow receiveShadow geometry={nodes.Sphere.geometry} material={materials.Lens} />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Circle002.geometry}
-        material={nodes.Circle002.material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Circle003.geometry}
-        material={nodes.Circle003.material}
+        material={materials.Emit}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Sphere002.geometry}
-        material={nodes.Sphere002.material}
+        material={materials.Lens}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SVETLA.geometry}
-        material={nodes.SVETLA.material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.SVETLA_2.geometry}
-        material={materials['Material.002']}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.SVETLA_2001.geometry}
-        material={materials.Material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere003.geometry}
-        material={materials['Material.003']}
+        material={materials['White striped']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_BUMPER006.geometry}
-        material={materials['Material.004']}
+        material={materials['Glass lights']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_LIGHT.geometry}
-        material={materials.Material}
+        material={materials['Glass lights']}
         position={[-0.288, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_LIGHT001.geometry}
-        material={materials.Material}
+        material={materials.Plastic}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.TRUNK001.geometry}
-        material={materials.Material}
+        material={materials['Trunk lights']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.TRUNK002.geometry}
-        material={materials.Material}
+        material={materials['Red light']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.REAR_LIGHTS_3.geometry}
-        material={nodes.REAR_LIGHTS_3.material}
+        material={materials.ChromeRed}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.FRONT_HOOD_VENT001.geometry}
-        material={nodes.FRONT_HOOD_VENT001.material}
+        material={materials.Black}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.CIRCLE.geometry}
-        material={nodes.CIRCLE.material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['1'].geometry}
-        material={nodes['1'].material}
+        geometry={nodes.REAR_WHITE_LIGHT.geometry}
+        material={materials['White striped']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['2'].geometry}
-        material={nodes['2'].material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['3'].geometry}
-        material={nodes['3'].material}
+        material={materials['Red light striped']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['4'].geometry}
-        material={nodes['4'].material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['5'].geometry}
-        material={nodes['5'].material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['6'].geometry}
-        material={nodes['6'].material}
+        material={materials['Chrome (grille)']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['7'].geometry}
-        material={nodes['7'].material}
+        material={materials['Red light']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['9'].geometry}
-        material={nodes['9'].material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['10'].geometry}
-        material={nodes['10'].material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['11'].geometry}
-        material={nodes['11'].material}
+        material={materials['red lights striped 2']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['8'].geometry}
-        material={nodes['8'].material}
+        material={materials['Red light']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.MIRROR.geometry}
-        material={nodes.MIRROR.material}
+        material={materials['Car Paint']}
+      />
+      <mesh castShadow receiveShadow geometry={nodes['11'].geometry} material={materials.EmitRed} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.B_PILLAR.geometry}
+        material={materials.Plastic}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.WINDSHIELD_FRAME001.geometry}
+        material={materials.Plastic}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.FRONT_BUMPER007.geometry}
+        material={materials.Black}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.FRONT_BUMPER008.geometry}
+        material={materials.Black}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.FRONT_BUMPER009.geometry}
+        material={materials.Material}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.FUEL_TANK.geometry}
+        material={materials.Plastic}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.RIGHT_ANGEL_EYE.geometry}
+        material={materials.Emit}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.EXAUST_BOLTS.geometry}
+        material={materials['Metal (grey)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.LEFT_ANGEL_EYE.geometry}
+        material={materials.Emit}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.LICENSE_PLATE.geometry}
+        material={materials['License plate']}
+      />
+      <mesh castShadow receiveShadow geometry={nodes.Plane.geometry} material={materials.Black} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['5001'].geometry}
+        material={materials['Chrome (grille)']}
+      />
+      <mesh castShadow receiveShadow geometry={nodes['10001'].geometry} material={materials.Emit} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.REAR_WHITE_LIGHT001.geometry}
+        material={materials['White striped']}
+      />
+      <mesh castShadow receiveShadow geometry={nodes['10002'].geometry} material={materials.Emit} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.SIDE_VENT_SQUARE001.geometry}
+        material={materials['Chrome (grille)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Sphere001.geometry}
+        material={materials.Lens}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Sphere003.geometry}
+        material={materials.Lens}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.DOOR_HANDLE001.geometry}
+        material={materials['Car Paint']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['11001'].geometry}
+        material={materials.EmitRed}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.BACK_WINDOW_BOLTS001.geometry}
+        material={materials['Metal (grey)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle_1.geometry}
+        material={materials['Chrome (grille)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle_2.geometry}
+        material={materials.Plastic}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle013.geometry}
+        material={materials['Red light striped']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle013_1.geometry}
+        material={materials['Red light']}
       />
     </group>
-  );
+  )
 }
 
-useGLTF.preload('/m3 finalGLAVNO.glb');
+useGLTF.preload('/models/BMW M3.glb')

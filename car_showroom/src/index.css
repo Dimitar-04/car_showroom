@@ -1,6 +1,6 @@
 :root {
-  --textColor: #333a3f;
-  --primaryBackgroundWhite: #f6f4f1;
+  --textColor: rgba(8, 27, 46, 1);
+  --primaryBackgroundWhite: #e1e3e2;
 }
 
 html,
@@ -8,17 +8,44 @@ body {
   margin: 0;
   padding: 0;
 }
-#history{
+#history {
   z-index: 2;
 }
-#navbar{
+.navbar {
   font-family: 'Helvetica', serif;
   font-weight: 700;
   font-style: normal;
-  font-size:35px;
+  font-size: 100%;
 }
+#textbox1,
+#textbox2 {
+  width: 600px;
+}
+
+#textbox1 > div,
+#textbox2 > div {
+  margin-bottom: 20%;
+}
+
+#left_indent {
+  padding-right: 30%;
+}
+#right_indent {
+  padding-left: 30%;
+}
+
+h2.IntroParagraph {
+  font-size: 200%;
+  width: 50%;
+}
+p.IntroParagraph {
+  width: 50%;
+  font-size: 150%;
+  text-align: justify;
+}
+
 p {
-  font-family: "Courier Prime", monospace;
+  font-family: 'Courier Prime', monospace;
   font-weight: 400;
   font-style: normal;
 }

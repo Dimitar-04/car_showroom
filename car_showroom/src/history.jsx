@@ -11,8 +11,8 @@ function History() {
   const [currentIndex, setCurrentIndex] = useState(0); // State for current item index
   const scrollableContainerRef = useRef(null); // Ref for the scrollable div
   const scrollTimeoutRef = useRef(null);
-  const AUTO_SCROLL_INTERVAL = 5000; // 3 seconds
-  const AUTO_SCROLL_RESUME_DELAY = 15000; // 15 seconds
+  const AUTO_SCROLL_INTERVAL = 10000;
+  const AUTO_SCROLL_RESUME_DELAY = 15000;
   const autoScrollIntervalRef = useRef(null);
   const resumeTimeoutRef = useRef(null);
   const gridItems = [
@@ -58,32 +58,11 @@ function History() {
     loadAllFiles();
   }, []);
 
-  const truncateText = (text, wordLimit = 30) => {
-    if (!text) return '';
-    const words = text.split(' ');
-    if (words.length <= wordLimit) return text;
-    return words.slice(0, wordLimit).join(' ');
-  };
-
-  const openDialogText = (title) => {
-    setOpenDialog(title);
-    setDialogImage(null);
-    if (dialogRef.current) {
-      dialogRef.current.showModal();
-      document.body.style.overflow = 'hidden';
-    }
-  };
   const openDialogImage = (imageUrl, caption, title) => {
     setDialogImage({ url: imageUrl, caption: caption, title: title });
     setOpenDialog(null);
     if (dialogRef.current) {
       dialogRef.current.showModal();
-    }
-  };
-  const closeDialogByButton = () => {
-    setOpenDialog(null);
-    if (dialogRef.current) {
-      dialogRef.current.close();
     }
   };
   // Start auto-scroll
@@ -188,9 +167,6 @@ function History() {
 
   return (
     <MainWrapper>
-      <StyledHeader>
-        <h1 id="history">HISTORY</h1>
-      </StyledHeader>
       <MainContainer>
         <ScrollableTextItemContainer ref={scrollableContainerRef}>
           <RollerWrapper
@@ -203,7 +179,7 @@ function History() {
             {gridItems.map((item) => (
               <TextItemCard key={item.file}>
                 {' '}
-                <h2 onClick={() => openDialogText(item.title)}>{item.title}</h2>
+                <h2>{item.title}</h2>
                 <Paragraph>
                   {textContents[item.title] || 'Loading...'}
                 </Paragraph>
@@ -289,7 +265,6 @@ function History() {
             <>
               <h1>{openDialog}</h1>
               <p>{textContents[openDialog]}</p>
-              <CloseButton onClick={closeDialogByButton}>Close</CloseButton>
             </>
           )}
           {dialogImage && (
@@ -299,7 +274,6 @@ function History() {
                 <DialogImage src={dialogImage.url} alt={dialogImage.caption} />
                 <p>{dialogImage.caption}</p>
               </DialogImageContainer>
-              <CloseButton onClick={closeDialogByButton}>Close</CloseButton>
             </>
           )}
         </DialogContainer>
@@ -307,6 +281,7 @@ function History() {
     </MainWrapper>
   );
 }
+
 const TextItemCard = styled.div`
   height: ${ITEM_CARD_HEIGHT_CSS};
   padding: 20px;
@@ -314,18 +289,15 @@ const TextItemCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; // Or 'center' if you prefer
+  align-items: flex-start;
   overflow: hidden;
   margin-top: 2%;
   h2 {
-    color: rgb(0, 0, 0);
-    cursor: pointer;
+    color: rgb(255, 252, 252);
+
     font-size: 55px;
     margin-bottom: 15px;
     transition: color 0.3s ease;
-    &:hover {
-      color: #16588e;
-    }
   }
 `;
 
@@ -338,6 +310,7 @@ const ScrollableTextItemContainer = styled.div`
   height: 750px;
   overflow: hidden;
   position: relative;
+  margin-top: 8%;
 `;
 const DialogImageContainer = styled.div`
   display: flex;
@@ -358,18 +331,21 @@ const DialogImageContainer = styled.div`
 
 const DialogImage = styled.img`
   max-width: 100%;
-  max-height: 300px;
+  max-height: 400px;
   object-fit: contain;
-
-  border-radius: 8px;
 `;
 const Card3 = styled.div`
   width: 50%;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   z-index: 11;
-  top: 60%;
+  top: 80%;
+
+  @media (min-width: 1600px) {
+    top: 65%;
+  }
+
   position: absolute;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -397,6 +373,7 @@ const Card3 = styled.div`
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
   }
 
   img:hover {
@@ -407,7 +384,7 @@ const Card3 = styled.div`
 `;
 const Card2 = styled.div`
   width: 50%;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   margin-top: 0;
@@ -438,6 +415,7 @@ const Card2 = styled.div`
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
   }
 
   img:hover {
@@ -448,7 +426,7 @@ const Card2 = styled.div`
 `;
 const Card = styled.div`
   width: 50%;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
 
@@ -479,6 +457,7 @@ const Card = styled.div`
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
   }
 
   img:hover {
@@ -490,7 +469,6 @@ const Card = styled.div`
 const DialogContainer = styled.div`
   background-color: white;
   padding: 30px;
-  border-radius: 8px;
   width: 100%;
   max-width: 800px;
   max-height: 100vh;
@@ -498,7 +476,7 @@ const DialogContainer = styled.div`
   overflow-y: hidden;
   h1 {
     margin-top: 0;
-    font-style: italic;
+    color: rgba(8, 27, 46, 1);
   }
 
   p {
@@ -512,10 +490,9 @@ const StyledDialog = styled.dialog`
   background: transparent;
   max-width: 80%;
   max-height: 80vh;
-  border-radius: 8px;
   overflow: hidden;
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
   }
   &::-webkit-scrollbar {
     display: none;
@@ -526,22 +503,22 @@ const StyledDialog = styled.dialog`
 `;
 const CloseButton = styled.button`
   padding: 8px 16px;
-  background-color: #16588e;
+  background-color: rgba(8, 27, 46, 1);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   position: absolute;
-  left: 6px;
-  bottom: 4px;
+  left: 10px;
+  bottom: 10px;
   &:hover {
     background-color: #0d3b5f;
   }
 `;
 
 const Paragraph = styled.p`
-  color: black;
+  color: white;
   font-size: 32px; /* Adjusted for space */
   text-align: justify;
   text-justify: inter-word;
@@ -556,18 +533,8 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  margin-top: 150px;
   margin-bottom: 1.5%;
   margin-left: 2%;
-`;
-const TextsContainer = styled.div`
-  width: 58%;
-  height: 100%;
-
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
 `;
 const ImagesContainer = styled.div`
   width: 42%;
@@ -584,10 +551,12 @@ const ImagesContainer = styled.div`
 const MainWrapper = styled.div`
   position: relative;
 
-  background: var(--primaryBackgroundColor);
+  background: rgb(8, 27, 46);
   width: 100%;
-  min-height: 100vh;
-
+  height: 180vh;
+  @media (min-width: 1600px) {
+    height: 130vh;
+  }
   display: flex;
   flex-direction: column;
   &::-webkit-scrollbar {
@@ -595,28 +564,6 @@ const MainWrapper = styled.div`
   }
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
-`;
-const StyledHeader = styled.div`
-  // position: absolute;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  margin-top: 2%;
-  h1 {
-    margin: 0;
-    font-size: 100px;
-    color: var(--textColor);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-`;
-const EmPerformance = styled.div`
-  background-image: url('../src/assets/sliki/pozadinaProtivChoveshtvoto.png');
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 50vh;
-  position: absolute;
-  top: 50px;
 `;
 
 export default History;
