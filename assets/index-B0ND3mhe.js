@@ -4343,7 +4343,7 @@ void main() {
   }
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
-`;function lG(){const a=uc.useRef(null),e=uc.useRef(null),t=uc.useRef(null),n=i=>{var r;(r=i.current)==null||r.scrollIntoView({behavior:"smooth"})};return de.jsx(de.Fragment,{children:de.jsxs(uG,{children:[de.jsxs(hG,{children:[de.jsx(fG,{}),de.jsxs(gG,{children:[de.jsx("p",{class:"navbar",onClick:()=>n(a),children:"OVERVIEW"}),de.jsx("p",{class:"navbar",onClick:()=>n(e),children:"HISTORY"}),de.jsx("p",{class:"navbar",onClick:()=>n(t),children:"ENGINE"})]}),de.jsx(_G,{children:de.jsx("h1",{children:"THE M3"})}),de.jsx(yG,{children:de.jsxs(yF,{style:{width:"75%",height:"100%"},children:[de.jsx(kH,{preset:"studio"}),de.jsx(CH,{minDistance:5,maxDistance:6,zoomSpeed:.2,enablePan:!1,minPolarAngle:Math.PI/4,maxPolarAngle:Math.PI/2}),de.jsx(XH,{scale:1.8})]})}),de.jsxs(cG,{children:[de.jsx("h2",{class:"IntroParagraph",children:"THE ULTIMATE DRIVING MACHINE"}),de.jsx("p",{class:"IntroParagraph",children:"The BMW M3 GTR is a legendary sports car that combines advanced engineering with striking design. Built for performance and agility, it delivers exceptional handling and precision on every road and track. Revered by enthusiasts, the M3 GTR stands as a symbol of BMW’s commitment to driving excellence and motorsport heritage."})]})]}),de.jsx("div",{ref:e,children:de.jsx(Kz,{})}),de.jsx("div",{ref:t,children:de.jsx(zz,{})})]})})}const cG=di.div`
+`;function lG(){const a=uc.useRef(null),e=uc.useRef(null),t=uc.useRef(null),n=i=>{var r;(r=i.current)==null||r.scrollIntoView({behavior:"smooth"})};return de.jsx(de.Fragment,{children:de.jsxs(uG,{children:[de.jsxs(hG,{children:[de.jsx(fG,{style:{backgroundImage:"url(/car_showroom/sliki/pozadinaProtivMojaVolja.png)"}}),de.jsxs(gG,{children:[de.jsx("p",{class:"navbar",onClick:()=>n(a),children:"OVERVIEW"}),de.jsx("p",{class:"navbar",onClick:()=>n(e),children:"HISTORY"}),de.jsx("p",{class:"navbar",onClick:()=>n(t),children:"ENGINE"})]}),de.jsx(_G,{children:de.jsx("h1",{children:"THE M3"})}),de.jsx(yG,{children:de.jsxs(yF,{style:{width:"75%",height:"100%"},children:[de.jsx(kH,{preset:"studio"}),de.jsx(CH,{minDistance:5,maxDistance:6,zoomSpeed:.2,enablePan:!1,minPolarAngle:Math.PI/4,maxPolarAngle:Math.PI/2}),de.jsx(XH,{scale:1.8})]})}),de.jsxs(cG,{children:[de.jsx("h2",{class:"IntroParagraph",children:"THE ULTIMATE DRIVING MACHINE"}),de.jsx("p",{class:"IntroParagraph",children:"The BMW M3 GTR is a legendary sports car that combines advanced engineering with striking design. Built for performance and agility, it delivers exceptional handling and precision on every road and track. Revered by enthusiasts, the M3 GTR stands as a symbol of BMW’s commitment to driving excellence and motorsport heritage."})]})]}),de.jsx("div",{ref:e,children:de.jsx(Kz,{})}),de.jsx("div",{ref:t,children:de.jsx(zz,{})})]})})}const cG=di.div`
   display: flex;
   justify-content: center;
   width: 70%;
@@ -4365,7 +4365,6 @@ void main() {
 
   position: absolute;
 
-  background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
   background-size: cover;
 
   z-index: 1;
