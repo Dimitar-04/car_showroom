@@ -19,7 +19,13 @@ function Landing() {
     <>
       <PageContainer>
         <MainWrapper>
-          <BackgroundHolder></BackgroundHolder>
+          <BackgroundHolder
+            style={{
+              backgroundImage: `url(${
+                import.meta.env.BASE_URL
+              }sliki/pozadinaProtivMojaVolja.png)`,
+            }}
+          ></BackgroundHolder>
           <Navbar>
             <p class="navbar" onClick={() => scroll(overviewRef)}>
               OVERVIEW
@@ -97,7 +103,6 @@ const BackgroundHolder = styled.div`
 
   position: absolute;
 
-  background-image: url('../src/assets/sliki/pozadinaProtivMojaVolja.png');
   background-size: cover;
 
   z-index: 1;
