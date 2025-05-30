@@ -65,7 +65,8 @@ function Engine() {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/models/Assembled V8 Engine with Disassemble Animation 3 seconds.glb',
+      import.meta.env.BASE_URL +
+        '/models/Assembled V8 Engine with Disassemble Animation 3 seconds.glb',
       (gltf) => {
         const mesh = gltf.scene;
         mesh.scale.set(0.6, 0.6, 0.6);
@@ -121,8 +122,8 @@ function Engine() {
           } else {
             controls.minDistance = 10;
             controls.maxDistance = 20;
-            action.timeScale = 1; 
-            action.paused = false; 
+            action.timeScale = 1;
+            action.paused = false;
             action.reset().play();
           }
         });
@@ -141,7 +142,7 @@ function Engine() {
       mouseDownTimestamp = 0; // Reset timestamp
 
       if (clickDuration < 100) {
-        handleClick(); 
+        handleClick();
       }
     };
 

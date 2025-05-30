@@ -2,7 +2,9 @@ import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 
 export function Car(props) {
-  const { nodes, materials } = useGLTF('/models/BMW M3.glb');
+  const { nodes, materials } = useGLTF(
+    import.meta.env.BASE_URL + '/models/BMW M3.glb'
+  );
   return (
     <group {...props} dispose={null}>
       <mesh

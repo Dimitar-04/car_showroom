@@ -18,16 +18,19 @@ function History() {
   const gridItems = [
     {
       title: 'A Racing Icon',
-      file: '/texts/A Racing Icon.txt',
+      file: import.meta.env.BASE_URL + '/texts/A Racing Icon.txt',
     },
-    { title: 'V8 Power', file: `/texts/V8 Power.txt` },
+    {
+      title: 'V8 Power',
+      file: import.meta.env.BASE_URL + `/texts/V8 Power.txt`,
+    },
     {
       title: 'Banned for Dominance',
-      file: '/texts/Banned for Dominance.txt',
+      file: import.meta.env.BASE_URL + '/texts/Banned for Dominance.txt',
     },
     {
       title: 'The Ultimate Rarity',
-      file: '/texts/The Ultimate Rarity.txt',
+      file: import.meta.env.BASE_URL + '/texts/The Ultimate Rarity.txt',
     },
   ];
 
@@ -37,7 +40,7 @@ function History() {
         const response = await fetch(file);
         if (!response.ok) throw new Error('File not found');
         const text = await response.text();
-        console.log(text);
+
         return text;
       } catch (error) {
         console.error('Failed to load text file:', error);
@@ -196,10 +199,10 @@ function History() {
           {/* Card components remain the same */}
           <Card>
             <img
-              src="../src/assets/sliki/racing.jpg"
+              src={import.meta.env.BASE_URL + 'sliki/racing.jpg'}
               onClick={() =>
                 openDialogImage(
-                  '../src/assets/sliki/racing.jpg',
+                  import.meta.env.BASE_URL + 'sliki/racing.jpg',
                   'The BMW M3 GTR E46 GTR Race Version',
                   'Racing'
                 )
@@ -217,10 +220,10 @@ function History() {
           </Card>
           <Card2>
             <img
-              src="../src/assets/sliki/road-legal.jpg"
+              src={import.meta.env.BASE_URL + 'sliki/road-legal.jpg'}
               onClick={() =>
                 openDialogImage(
-                  '../src/assets/sliki/road-legal.jpg',
+                  import.meta.env.BASE_URL + 'sliki/road-legal.jpg',
                   'The road legal version of the BMW M3 GTR (Left)',
                   'Road Legal'
                 )
@@ -238,10 +241,10 @@ function History() {
           </Card2>
           <Card3>
             <img
-              src="../src/assets/sliki/europe-lemans.jpg"
+              src={import.meta.env.BASE_URL + 'sliki/europe-lemans.jpg'}
               onClick={() =>
                 openDialogImage(
-                  '../src/assets/sliki/europe-lemans.jpg',
+                  import.meta.env.BASE_URL + 'sliki/europe-lemans.jpg',
                   'The M3 GTR that raced at Le Mans',
                   '24 Hours of Le Mans'
                 )
