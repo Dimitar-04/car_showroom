@@ -35,7 +35,7 @@ function Engine() {
 
     controls.minDistance = 15;
     controls.maxDistance = 18;
-    console.log(controls.minDistance);
+
     controls.minPolarAngle = 0.5;
     controls.maxPolarAngle = 1.5;
     controls.autoRotate = false;
