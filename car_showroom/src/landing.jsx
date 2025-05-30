@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei'; // optional but convenient
-import { Car } from 'Components/car.jsx';
+import { Car } from './Components/car.jsx';
 import Engine from './engine';
 import History from './history';
 
