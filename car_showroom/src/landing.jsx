@@ -1,10 +1,36 @@
-import styled, { keyframes } from 'styled-components';
-import React from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls, useGLTF } from '@react-three/drei'; // optional but convenient
-import { Car } from './Components/car.jsx';
-import Engine from './engine';
-import History from './history';
+import styled, { keyframes } from "styled-components";
+import React, { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Environment, OrbitControls, useGLTF, Html } from "@react-three/drei"; // optional but convenient
+import { Car } from "./Components/car.jsx";
+import Engine from "./engine";
+import History from "./history";
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const LoaderCircle = styled.div`
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(8, 27, 46, 0.2);
+  border-top-color: rgba(8, 27, 46, 1);
+  border-radius: 50%;
+  animation: ${spin} 1s linear infinite;
+`;
+
+function Loader() {
+  return (
+    <Html center>
+      <LoaderCircle />
+    </Html>
+  );
+}
 
 function Landing() {
   const overviewRef = React.useRef(null);
@@ -12,7 +38,7 @@ function Landing() {
   const engineRef = React.useRef(null);
 
   const scroll = (ref) => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -41,7 +67,7 @@ function Landing() {
             <h1>THE M3</h1>
           </StyledHeader>
           <CanvasWrapper>
-            <Canvas style={{ width: '75%', height: '100%' }}>
+            <Canvas style={{ width: "75%", height: "100%" }}>
               <Environment preset="studio" />
               <OrbitControls
                 minDistance={5}
@@ -51,7 +77,9 @@ function Landing() {
                 minPolarAngle={Math.PI / 4}
                 maxPolarAngle={Math.PI / 2}
               />
-              <Car scale={1.8}></Car>
+              <Suspense fallback={<Loader />}>
+                <Car scale={1.8}></Car>
+              </Suspense>
             </Canvas>
           </CanvasWrapper>
           <IntroParagraph>
